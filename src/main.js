@@ -4,8 +4,7 @@ import App from './App.vue'
 
 require('./assets/scss/style.scss')
 
-const app = new Vue({
-    el: '#app',
+const main = new Vue({
     router,
-    render: h => h(App),
-})
+    render: h => h(App)
+}).$mount('#app')

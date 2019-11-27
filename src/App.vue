@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h1>H1のスタイル</h1>
-        <h2>H2のスタイル</h2>
+        <router-view></router-view>
     </div>
 <!--    <div id="my-app" class="page-wrapper">-->
 <!--            <div class="site-content">-->
