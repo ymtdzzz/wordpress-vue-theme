@@ -6,11 +6,6 @@
         </div>
         <app-footer/>
     </div>
-<!--    <div id="my-app" class="page-wrapper">-->
-<!--            <div class="site-content">-->
-<!--                <router-view></router-view>-->
-<!--            </div>-->
-<!--    </div>-->
 </template>
 
 <script>

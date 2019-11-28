@@ -1,6 +1,8 @@
 import axios from 'axios'
-import { API_BASE_PATH } from '../Constants'
+import { API_BASE_PATH, DEV_DOMAIN } from '../Constants'
 
-export default {
-//	TODO: APIの各種処理を実装
-}
+const baseURL = DEV_DOMAIN + API_BASE_PATH
+
+export default axios.create({
+    baseURL
+})
