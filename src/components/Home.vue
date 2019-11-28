@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>H1のスタイル</h1>
+    <h2>H2のスタイル</h2>
   </div>
 </template>
 
@@ -15,3 +16,6 @@
 //   }
 // };
 </script>
+
+<style lang="scss" scoped>
+</style>

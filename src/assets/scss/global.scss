@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+@import "variables";
+@import "mixins";
+
+div {
+  h1 {
+    color: blue;
+  }
+}

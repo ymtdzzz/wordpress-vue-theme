@@ -26,7 +26,4 @@
 </script>
 
 <style lang="scss">
-    h2 {
-        color: #0d99d5;
-    }
 </style>
