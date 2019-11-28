@@ -4,7 +4,6 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
-    mode: 'development',
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -55,11 +54,6 @@ module.exports = {
         new VueLoaderPlugin(),
         // new webpack.ProvidePlugin({
         //     throttle: "lodash.throttle"
-        // }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     include: /\.min\.bundle\.js$/,
-        //     minimize: true,
-        //     ecma: 8
         // }),
         // new webpack.LoaderOptionsPlugin({ minimize: true }),
         new ExtractTextPlugin("styles.css")

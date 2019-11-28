@@ -1,6 +1,10 @@
 <template>
     <div>
-        <router-view></router-view>
+        <app-header/>
+        <div>
+            <router-view></router-view>
+        </div>
+        <app-footer/>
     </div>
 <!--    <div id="my-app" class="page-wrapper">-->
 <!--            <div class="site-content">-->
@@ -10,8 +14,14 @@
 </template>
 
 <script>
-    export default {
+  import Header from './components/partials/Header'
+  import Footer from './components/partials/Footer'
 
+    export default {
+        components: {
+            appHeader: Header,
+            appFooter: Footer
+        }
     }
 </script>
 

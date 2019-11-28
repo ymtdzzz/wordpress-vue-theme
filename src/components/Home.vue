@@ -1,11 +1,6 @@
 <template>
   <div>
-    <h3>Welcome!</h3>
-    <p>You'll probably want to remove all of this stuff, but hey it at least it works!</p>
-    <p>
-      ~
-      <a href="https://evanagee.com/">Evan Agee</a>
-    </p>
+    <h1>H1のスタイル</h1>
   </div>
 </template>
 
