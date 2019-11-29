@@ -37,6 +37,8 @@ const getters = {
 // actions
 const actions = {
   getPosts({ commit }, { limit }) {
+    commit(types.POSTS_LOADED, false);
+
     PostsRepository.getPosts(limit, posts => {
       // 取得した投稿のフルパスを取得
       posts.map((post, i) => {
