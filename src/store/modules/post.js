@@ -1,13 +1,14 @@
-import api from "../../api";
-import _ from "lodash";
-import * as types from "../mutation-types";
+import { RepositoryFactory } from "../../api/RepositoryFactory"
+import * as types from "../mutation-types"
 
-const createPostSlug = post => {
-  let slug = post.link.replace("http://" + window.location.hostname, "");
-  slug = slug.replace("https://" + window.location.hostname, "");
-  post.slug = slug;
-  return post;
-};
+const PostsRepository = RepositoryFactory.get('posts')
+
+// const createPostSlug = post => {
+//   let slug = post.link.replace("http://" + window.location.hostname, "");
+//   slug = slug.replace("https://" + window.location.hostname, "");
+//   post.slug = slug;
+//   return post;
+// };
 
 // initial state
 const state = {
@@ -36,14 +37,9 @@ const getters = {
 // actions
 const actions = {
   getPosts({ commit }, { limit }) {
-    api.getPosts(limit, posts => {
-      posts.map((post, i) => {
-        posts[i] = createPostSlug(post);
-      });
-
+    PostsRepository.get(posts => {
       commit(types.STORE_FETCHED_POSTS, { posts });
       commit(types.POSTS_LOADED, true);
-      commit(types.INCREMENT_LOADING_PROGRESS);
     });
   }
 };

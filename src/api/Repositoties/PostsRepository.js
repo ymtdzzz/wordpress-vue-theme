@@ -1,8 +1,16 @@
 import Repository from "../Repository";
 
-const rresource = "/posts"
+const resource = "/posts"
 export default {
-	get() {
-		return Repository.get(`${rresource}`)
+	get(callback) {
+		return Repository.get(
+			`${resource}`
+		)
+		.then(response => {
+			callback(response.data);
+		})
+		.catch(e => {
+			callback(e)
+		})
 	},
 }

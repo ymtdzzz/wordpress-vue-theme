@@ -2,36 +2,29 @@
   <div>
     <h1>H1のスタイル</h1>
     <h2>H2のスタイル</h2>
-    <button @click="fetch">Fetch</button>
-    <ul>
-      <li v-for="post in posts">
+    <ul v-if="recentPostsLoaded">
+      <li v-for="post in recentPosts(10)" :key="post.id">
         {{ post.title.rendered }}
       </li>
     </ul>
-    <Loader v-if="isLoading"/>
+    <Loader v-else/>
   </div>
 </template>
 
 <script>
-  import { RepositoryFactory } from "../api/RepositoryFactory"
+  import _ from 'lodash'
+  import { mapGetters } from 'vuex'
   import Loader from './partials/Loader'
-  const PostsRepository = RepositoryFactory.get('posts')
 
   export default {
-      data() {
-          return {
-              isLoading: false,
-              posts: [],
-          }
+      computed: {
+          ...mapGetters({
+              recentPosts: "recentPosts",
+              recentPostsLoaded: "recentPostsLoaded",
+          })
       },
-      methods: {
-          async fetch () {
-              this.isLoading = true
-              this.posts = []
-              const { data } = await PostsRepository.get()
-              this.posts = data
-              this.isLoading = false
-          }
+      mounted() {
+          this.$store.dispatch("getPosts", { limit: 10 })
       },
       components: {
           Loader
