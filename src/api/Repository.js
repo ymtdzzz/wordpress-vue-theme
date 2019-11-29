@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { API_BASE_PATH, DEV_DOMAIN } from '../Constants'
+import CONSTANTS from '../Constants'
 
-const baseURL = DEV_DOMAIN + API_BASE_PATH
+const baseURL = CONSTANTS.DEV_DOMAIN + CONSTANTS.API_BASE_PATH
 
 export default axios.create({
     baseURL
