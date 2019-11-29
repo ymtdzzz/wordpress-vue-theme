@@ -3,12 +3,12 @@ import * as types from "../mutation-types"
 
 const PostsRepository = RepositoryFactory.get('posts')
 
-// const createPostSlug = post => {
-//   let slug = post.link.replace("http://" + window.location.hostname, "");
-//   slug = slug.replace("https://" + window.location.hostname, "");
-//   post.slug = slug;
-//   return post;
-// };
+const createPostSlug = post => {
+  let slug = post.link.replace("http://" + window.location.hostname, "");
+  slug = slug.replace("https://" + window.location.hostname, "");
+  post.slug = slug;
+  return post;
+};
 
 // initial state
 const state = {
@@ -37,7 +37,12 @@ const getters = {
 // actions
 const actions = {
   getPosts({ commit }, { limit }) {
-    PostsRepository.get(posts => {
+    PostsRepository.getPosts(limit, posts => {
+      // 取得した投稿のフルパスを取得
+      posts.map((post, i) => {
+        posts[i] = createPostSlug(post)
+      })
+
       commit(types.STORE_FETCHED_POSTS, { posts });
       commit(types.POSTS_LOADED, true);
     });

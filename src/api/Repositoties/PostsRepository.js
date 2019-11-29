@@ -1,10 +1,14 @@
-import Repository from "../Repository";
+import Repository from "../Repository"
+import _ from 'lodash'
 
-const resource = "/posts"
+const resource = "/posts?per_page="
 export default {
-	get(callback) {
+	getPosts(limit, callback) {
+		if (_.isEmpty(limit)) {
+			let limit = 5
+		}
 		return Repository.get(
-			`${resource}`
+			`${resource}${limit}`
 		)
 		.then(response => {
 			callback(response.data);
