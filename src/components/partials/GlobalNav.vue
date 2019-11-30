@@ -32,16 +32,16 @@
     .nav {
         display : flex;
         flex-flow: row wrap;
-        width: 600px;
+        width: 800px;
         height: 100%;
         margin: 0;
         padding: 0;
         li {
             height: 100%;
+            width: 250px;
             list-style: none;
             display: table;
             text-align: center;
-            padding: 0 5px;
             border-left: 1px solid #fff;
             &:last-child{
                 border-right: 1px solid #fff;
@@ -51,6 +51,7 @@
                 display: table-cell;
                 height: 100%;
                 vertical-align: middle;
+                padding: 0 5px;
             }
         }
     }
