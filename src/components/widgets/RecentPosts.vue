@@ -1,11 +1,12 @@
 <template>
     <div class="recent-posts">
-        <ul v-if="recentPostsLoaded">
-            <li v-for="post in recentPosts(limit)" :key="post.id">
-                <router-link :to="post.slug">{{ post.title.rendered }}</router-link>
-            </li>
-        </ul>
-        <Loader v-else/>
+<!--        <ul v-if="recentPostsLoaded">-->
+<!--            <li v-for="post in recentPosts(limit)" :key="post.id">-->
+<!--                <router-link :to="post.slug">{{ post.title.rendered }}</router-link>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <Loader v-else/>-->
+        <post-card/>
     </div>
 </template>
 
@@ -13,6 +14,7 @@
     import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from '../partials/Loader'
+    import PostCard from '../partials/PostCard'
 
     export default {
         props: ['limit'],
@@ -26,15 +28,15 @@
             this.$store.dispatch("getPosts", { limit: this.limit })
         },
         components: {
-            Loader
+            Loader,
+            PostCard
         }
     }
 </script>
 
 <style lang="scss" scoped>
     .recent-posts {
-        width: 80%;
-        background-color: #00A8EF;
-        margin: 0 auto;
+        width: 70%;
+        margin: 20px auto;
     }
 </style>

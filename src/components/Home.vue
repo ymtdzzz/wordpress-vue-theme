@@ -2,6 +2,7 @@
   <div class="main-container">
     <pickup-carousel />
 <!--    <recent-posts limit="10"/>-->
+    <recent-posts />
   </div>
 </template>
 
@@ -18,4 +19,6 @@
 </script>
 
 <style lang="scss" scoped>
+  .main-container {
+  }
 </style>

@@ -6,7 +6,6 @@ import App from './App'
 import store from './store'
 
 import 'reset-css'
-// import 'normalize.css'
 
 require('./assets/scss/global.scss')
 
