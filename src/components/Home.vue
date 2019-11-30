@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <h1>H1のスタイル</h1>
-    <recent-posts limit="30"/>
+  <div class="main-container">
+    <pickup-carousel />
+<!--    <recent-posts limit="10"/>-->
   </div>
 </template>
 
 <script>
   import RecentPosts from "./widgets/RecentPosts";
+  import PickupCarousel from "./partials/PickupCarousel";
 
   export default {
     components: {
-      RecentPosts
+      RecentPosts,
+      PickupCarousel,
     }
   }
 </script>

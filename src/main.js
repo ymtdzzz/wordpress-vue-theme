@@ -5,7 +5,8 @@ import router from './router'
 import App from './App'
 import store from './store'
 
-import 'normalize.css'
+import 'reset-css'
+// import 'normalize.css'
 
 require('./assets/scss/global.scss')
 

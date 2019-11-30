@@ -1,5 +1,5 @@
 <template>
-    <div class="widget recent-posts">
+    <div class="recent-posts">
         <ul v-if="recentPostsLoaded">
             <li v-for="post in recentPosts(limit)" :key="post.id">
                 <router-link :to="post.slug">{{ post.title.rendered }}</router-link>
@@ -30,3 +30,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .recent-posts {
+        width: 80%;
+        background-color: #00A8EF;
+        margin: 0 auto;
+    }
+</style>
