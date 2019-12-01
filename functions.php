@@ -26,3 +26,17 @@ function load_vue_scripts() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
+
+// 投稿を取得する再、タグ名称も取得する
+function ag_filter_post_json($response, $post, $context) {
+	$tags = wp_get_post_tags($post->ID);
+	$response->data['tag_names'] = [];
+
+	foreach ($tags as $tag) {
+		$response->data['tag_names'][] = $tag->name;
+	}
+
+	return $response;
+}
+
+add_filter( 'rest_prepare_post', 'ag_filter_post_json', 10, 3 );

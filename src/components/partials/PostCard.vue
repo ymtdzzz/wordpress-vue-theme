@@ -4,10 +4,7 @@
         <div class="post-card">
             <div class="post-card-header">
                 <div class="post-card-tags">
-<!--                    <a v-for="post.tags"-->
-                    <a href="https://yahoo.co.jp" class="tag">#AWS</a>
-                    <a href="https://yahoo.co.jp" class="tag">#Laravel</a>
-                    <a href="https://yahoo.co.jp" class="tag">#Vue.js</a>
+                    <a v-for="tag_name in post.tag_names" class="tag">#{{ tag_name }}</a>
                 </div>
                 <div class="post-card-title">{{ post.title.rendered }}</div>
                 <div class="post-card-sub">{{ post.date | moment }}</div>
@@ -142,6 +139,7 @@
         a.tag {
             display: inline-block;
             padding: 3px 6px;
+            margin-right: 3px;
             border: 1px solid black;
             position: relative;
             z-index: 3;

@@ -2,6 +2,7 @@ import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
 
 const PostsRepository = RepositoryFactory.get('posts')
+const TagsRepository = RepositoryFactory.get('tags')
 
 const createPostSlug = post => {
   let slug = post.link.replace("http://" + window.location.hostname, "")
@@ -44,7 +45,7 @@ const actions = {
     commit(types.POSTS_LOADED, false)
 
     PostsRepository.getPosts(limit, posts => {
-      // 取得した投稿のフルパスを取得
+      // 取得した投稿のフルパスとタグを取得
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
       })

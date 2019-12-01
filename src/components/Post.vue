@@ -10,6 +10,9 @@
                     <div class="article-title">
                         {{ postToShow.title.rendered }}
                     </div>
+                    <div class="article-tags">
+                        <a href="#" v-for="tag_name in postToShow.tag_names" class="tag">#{{ tag_name }}</a>
+                    </div>
                 </div>
             </transition>
         </div>
@@ -64,10 +67,28 @@
         .article-title {
             font-size: 2.2rem;
         }
+
         .article-sub {
             font-size: 1.2rem;
             line-height: 2;
             color: #888;
+        }
+
+        .article-tags {
+
+            .tag {
+                display: inline-block;
+                margin-right: 5px;
+                padding: 3px 5px;
+                color: #999;
+                text-decoration: none;
+                transition: color 0.25s ease;
+                line-height: 3.5;
+
+                &:hover {
+                    color: white;
+                }
+            }
         }
     }
 </style>

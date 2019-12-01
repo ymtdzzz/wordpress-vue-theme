@@ -1,14 +1,14 @@
 import Repository from "../Repository"
 import _ from 'lodash'
 
-const resource = "/posts"
+const resource = "/posts?_embed"
 export default {
 	getPosts(limit, callback) {
 		if (_.isEmpty(limit)) {
 			let limit = 5
 		}
 		return Repository.get(
-			`${resource}?per_page=${limit}`
+			`${resource}&per_page=${limit}`
 		)
 		.then(response => {
 			callback(response.data)
@@ -23,7 +23,7 @@ export default {
 			return {}
 		}
 		return Repository.get(
-			`${resource}?slug=${slug}`
+			`${resource}&slug=${slug}`
 		)
 		.then(response => {
 			callback(response.data)
