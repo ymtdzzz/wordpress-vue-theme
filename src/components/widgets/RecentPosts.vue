@@ -7,6 +7,9 @@
 <!--        </ul>-->
 <!--        <Loader v-else/>-->
         <post-card/>
+        <post-card/>
+        <post-card/>
+        <post-card/>
     </div>
 </template>
 
