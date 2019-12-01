@@ -1,13 +1,14 @@
 <template>
     <div class="card-container">
+        <a class="card-link" href="#"></a>
         <div class="post-card">
             <div class="post-card-header">
                 <div class="post-card-tags">
-                    <span class="tag">#AWS</span>
-                    <span class="tag">#Laravel</span>
-                    <span class="tag">#Vue.js</span>
+                    <a href="https://yahoo.co.jp" class="tag">#AWS</a>
+                    <a href="https://yahoo.co.jp" class="tag">#Laravel</a>
+                    <a href="https://yahoo.co.jp" class="tag">#Vue.js</a>
                 </div>
-                <div class="post-card-title">Super Awesome Long-named Serverrrrrrr</div>
+                <div class="post-card-title">{{ post.title.rendered }}</div>
                 <div class="post-card-sub"> 2019年11月21日（木）  </div>
             </div>
             <div class="post-card-feature">
@@ -24,13 +25,15 @@
 </template>
 
 <script>
-
+    export default {
+        props: ['post'],
+    }
 </script>
 
 <style lang="scss" scoped>
 
     .card-container {
-        transition: all 600ms ease;
+        transition: all 300ms;
         /*max-width: 1100px;*/
         display: flex;
         position: relative;
@@ -38,10 +41,27 @@
         margin: 20px 0;
         filter: drop-shadow(0 2px 1rem #ddd);
         border-radius: 5px;
+        z-index: 1;
+        top: 0;
+
+        &:hover {
+            top: -5px;
+        }
+
+        a.card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-indent:-999px;
+            z-index: 2;
+        }
     }
     @media screen and (min-width: 700px) {
         .card-container {
             height: 230px;
+            max-height: 300px;
         }
     }
     @media screen and (max-width: 700px) {
@@ -88,10 +108,8 @@
         font-size: 24px;
         margin-top: 12px;
         color: black;
-        width: calc(100% - 50px);
-        white-space: nowrap;
+        width: 100%;
         text-overflow: ellipsis;
-        overflow: hidden;
         /*flex: 0 0 auto;*/
     }
     @media screen and (max-width: 700px) {
@@ -119,10 +137,14 @@
 
     .post-card-tags {
 
-        .tag {
+        a.tag {
             display: inline-block;
             padding: 3px 6px;
             border: 1px solid black;
+            position: relative;
+            z-index: 3;
+            text-decoration: none;
+            color: black;
         }
     }
 

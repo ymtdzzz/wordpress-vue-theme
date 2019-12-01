@@ -1,8 +1,7 @@
 <template>
   <div class="main-container">
     <pickup-carousel />
-<!--    <recent-posts limit="10"/>-->
-    <recent-posts />
+    <recent-posts limit="10"/>
   </div>
 </template>
 

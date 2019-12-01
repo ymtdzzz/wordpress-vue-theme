@@ -6,11 +6,13 @@
 <!--            </li>-->
 <!--        </ul>-->
 <!--        <Loader v-else/>-->
-        <post-card/>
-        <post-card/>
-        <post-card/>
-        <post-card/>
-        <pager />
+        <div v-if="recentPostsLoaded">
+            <div v-for="post in recentPosts(limit)" :key="post.id">
+                <post-card :post="post" />
+            </div>
+            <pager />
+        </div>
+        <Loader v-else/>
     </div>
 </template>
 
@@ -20,6 +22,7 @@
     import Loader from '../partials/Loader'
     import PostCard from '../partials/PostCard'
     import Pager from '../partials/Pager'
+    import Post from "../Post";
 
     export default {
         props: ['limit'],
@@ -33,6 +36,7 @@
             this.$store.dispatch("getPosts", { limit: this.limit })
         },
         components: {
+            Post,
             Loader,
             PostCard,
             Pager,
