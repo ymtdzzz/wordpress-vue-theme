@@ -31,7 +31,7 @@
 
     .card-container {
         transition: all 600ms ease;
-        max-width: 1100px;
+        /*max-width: 1100px;*/
         display: flex;
         position: relative;
         /*overflow: hidden;*/

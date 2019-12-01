@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import RecentPosts from "./widgets/RecentPosts";
-  import PickupCarousel from "./partials/PickupCarousel";
+  import RecentPosts from "./widgets/RecentPosts"
+  import PickupCarousel from "./partials/PickupCarousel"
 
   export default {
     components: {

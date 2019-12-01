@@ -10,6 +10,7 @@
         <post-card/>
         <post-card/>
         <post-card/>
+        <pager />
     </div>
 </template>
 
@@ -18,6 +19,7 @@
     import { mapGetters } from 'vuex'
     import Loader from '../partials/Loader'
     import PostCard from '../partials/PostCard'
+    import Pager from '../partials/Pager'
 
     export default {
         props: ['limit'],
@@ -32,7 +34,8 @@
         },
         components: {
             Loader,
-            PostCard
+            PostCard,
+            Pager,
         }
     }
 </script>
@@ -40,6 +43,7 @@
 <style lang="scss" scoped>
     .recent-posts {
         width: 70%;
+        max-width: 1000px;
         margin: 20px auto;
     }
 </style>
