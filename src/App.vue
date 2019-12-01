@@ -2,7 +2,9 @@
     <div>
         <app-header/>
         <div>
-            <router-view></router-view>
+            <transition mode="out-in">
+                <router-view></router-view>
+            </transition>
         </div>
         <app-footer/>
     </div>
@@ -21,4 +23,10 @@
 </script>
 
 <style lang="scss">
+    .v-enter-active, .v-leave-active {
+        transition: opacity .5s;
+    }
+    .v-enter, .v-leave-to {
+        opacity: 0;
+    }
 </style>

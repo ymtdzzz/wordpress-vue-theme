@@ -1,6 +1,6 @@
 <template>
     <div class="card-container">
-        <a class="card-link" href="#"></a>
+        <router-link :to="post.slug" class="card-link"></router-link>
         <div class="post-card">
             <div class="post-card-header">
                 <div class="post-card-tags">
@@ -12,7 +12,7 @@
                 <div class="post-card-sub"> 2019年11月21日（木）  </div>
             </div>
             <div class="post-card-feature">
-                <span>記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内記事の内容記事の内容記事の内容記事の内容記事の内容容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容記事の内容</span>
+                {{ post.content.rendered | striphtml }}
             </div>
 <!--                <div class="bottom-row">-->
 <!--                    <div class="pxc-info">-->
@@ -34,7 +34,7 @@
 
     .card-container {
         transition: all 300ms;
-        /*max-width: 1100px;*/
+        width: 100%;
         display: flex;
         position: relative;
         /*overflow: hidden;*/
@@ -80,6 +80,7 @@
         background: white;
         margin: 0 auto;
         z-index: 0;
+        width: 100%;
         /*padding: 15px 25px 15px 40px;*/
         position: relative;
         display: flex;
@@ -156,6 +157,8 @@
         margin-bottom: 5px;
         line-height: 1.3;
         overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         -webkit-mask-image: linear-gradient(black 50%, transparent 100%);
     }
     @media screen and (max-width: 700px) {
