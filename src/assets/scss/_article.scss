@@ -1,0 +1,501 @@
+.article {
+  $margin-bottom: 60px;
+
+  address {
+    display: block;
+    font-style: italic;
+  }
+
+  pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    background-color: #f3f4f5;
+    border: 1px solid #ccc;
+    overflow: auto;
+    padding: 10px;
+    margin: 1em 0;
+  }
+
+  big {
+    font-size: larger;
+  }
+
+  cite {
+    font-style: italic;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  kbd {
+    font-family: monospace;
+  }
+
+  q {
+    display: inline;
+
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  sub {
+    vertical-align: sub;
+    font-size: smaller;
+  }
+
+  sup {
+    vertical-align: super;
+    font-size: smaller;
+  }
+
+  tt {
+    font-family: monospace;
+  }
+
+  var {
+    font-style: italic;
+  }
+
+  dl {
+    margin: 1em 0;
+  }
+
+  dd {
+    margin-left: 40px;
+  }
+
+  ul,
+  ol {
+     margin: 1em 0;
+     padding-left: 40px;
+
+    li {
+      margin: 2em;
+    }
+
+    ul, ol {
+      margin: 0;
+    }
+  }
+
+  ul {
+
+    li {
+      list-style-type: disc;
+    }
+
+    ul {
+
+      li {
+        list-style-type: square;
+      }
+
+      ul {
+
+        li {
+          list-style-type: circle;
+        }
+      }
+    }
+  }
+
+  ol {
+
+    li {
+      list-style-type: decimal;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.25;
+    font-weight: bold;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2.4em 0 1em;
+    // margin-top: 35px;
+    // margin-bottom: 20px;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 20px;
+    padding: 9px 10px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+  }
+
+  h2 {
+    font-size: 24px;
+    //margin-top: 40px;
+    //margin-bottom: 20px;
+    padding: 25px;
+    background-color: $xx_thin;
+    border-radius: $badge_border_radius;
+  }
+
+  h3 {
+    border-left: 7px solid $middle_thickness;
+    border-right: 1px solid $thin;
+    border-top: 1px solid $thin;
+    border-bottom: 1px solid $thin;
+    font-size: 22px;
+    padding: 12px 20px;
+
+  }
+
+  h4 {
+    border-top: 2px solid $thin;
+    border-bottom: 2px solid $thin;
+  }
+
+  h5 {
+    border-bottom: 2px solid $thin;
+  }
+
+  h6 {
+    border-bottom: 1px solid $thin;
+  }
+
+  .column-wrap {
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+    }
+  }
+
+  ///////////////////////////////////////
+  // キャプション表示
+  ///////////////////////////////////////
+
+
+  /************************************
+  ** WordPress Misc
+  ************************************/
+  .aligncenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .alignleft {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .alignright {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+
+  .wp-caption {
+    padding-top: 4px;
+    border: 1px solid $x_thin;
+    border-radius: 3px;
+    background-color: $xx_thin;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .wp-caption-text,
+  .gallery-caption{
+    font-size: 0.8em;
+    margin: 2px;
+  }
+
+  .wp-caption img {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+  }
+
+  .wp-caption-dd {
+    margin: 0;
+    padding: 0 4px 5px;
+    font-size: 11px;
+    line-height: 17px;
+  }
+
+  img.alignright {
+    display: inline-block;
+    margin: 0 0 1em 1.5em;
+  }
+
+  img.alignleft {
+    display: inline-block;
+    margin: 0 1.5em 1em 0;
+  }
+
+
+  .comment-btn{
+    margin: 24px 0;
+    cursor: pointer;
+  }
+
+  label {
+    cursor:pointer;
+  }
+
+  .sitemap li a::before{
+    display: none;
+  }
+
+  .content-top,
+  .content-bottom{
+    margin: 1em 0;
+  }
+
+  /************************************
+  ** 投稿・固定ページで使うHTML要素
+  ************************************/
+  p,
+  .paragraph{
+    margin-top: 1.4em;
+    margin-bottom: 1.4em;
+  }
+
+
+  table {
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th{
+      background-color: $xx_thin;
+    }
+
+    tr{
+      &:nth-of-type(2n+1){
+        background-color: $xxx_thin;
+      }
+
+      // &:hover{
+      //   @include bgc_hover;
+      // }
+    }
+
+    th,
+    td{
+      border: 1px solid $x_thin;
+      padding: 6px;
+    }
+  }
+  /************************************
+  ** 引用（blockquote）
+  ************************************/
+  blockquote {
+    background-color: $xxx_thin;
+    border: 1px solid $thin;
+    margin: 1em 0;
+    padding: 10px 1.2em;
+    position: relative;
+
+    &::before,
+    &::after{
+      color: #C8C8C8;
+      font-family: serif;
+      position: absolute;
+      font-size: 300%;
+
+    }
+
+    &::before {
+      content: "“";
+      line-height: 1.1;
+      left: 10px;
+      top: 0;
+    }
+
+    &::after {
+      content: "”";
+      line-height: 0;
+      right: 10px;
+      bottom: 0px;
+    }
+  }
+
+  /*本文下情報*/
+  .footer-meta{
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  /*投稿者*/
+  .author-info .post-author{
+    font-size: 14px;
+  }
+
+  /************************************
+  ** ページ管理画面の設定で「本文のみ」表示
+  ************************************/
+  .content-only{
+    .header-container,
+    .appeal,
+    .carousel,
+    .ad-area,
+    .sns-share,
+    .date-tags,
+    .sns-follow,
+    .article-footer,
+    .under-entry-content,
+    .breadcrumb,
+    .main-scroll,
+    .footer,
+    .go-to-top-button,
+    .notice-area,
+    .content-top,
+    .content-bottom
+    {
+      display: none;
+    }
+  }
+
+  /************************************
+  ** 画像関係のスタイル
+  ************************************/
+  figure{
+    margin: 0;
+  }
+
+  img{
+    max-width: 100%;
+    //display: inline-block;
+    height: auto;
+    border: 0;
+  }
+
+  .circle-image img{
+    border-radius: 50%;
+  }
+
+  /************************************
+  ** 画像の囲み効果
+  ************************************/
+  /*ボーダー*/
+  .iwe-border img,
+  .iwe-border amp-img{
+    border: 1px solid $basic_border_color;
+    //box-shadow: 0 0 1px rgba(0,0,0,.6);
+  }
+
+  /*ボーダー（太線）*/
+  .iwe-border-bold img,
+  .iwe-border-bold amp-img{
+    border: 4px solid $current_bgc;
+  }
+  /*シャドー*/
+  .iwe-shadow img,
+  .iwe-shadow amp-img{
+    box-shadow: 5px 5px 15px $x_thin;
+  }
+  /*シャドーペーパー*/
+  .iwe-shadow-paper img,
+  .iwe-shadow-paper amp-img{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(0,0,0,.08);
+  }
+
+  ///////////////////////////////////////
+  // iOS対応
+  ///////////////////////////////////////
+  .entry-card-thumb,
+  .author-thumb,
+  .blogcard-thumbnail,
+  .related-entry-card-thumb,
+  .popular-entry-card-thumb,
+
+  .ect-vertical-card .entry-card-thumb,
+  .rect-vartical-card .related-entry-card-thumb{
+    margin: 0;
+  }
+
+  .ib-right .blogcard-thumbnail,
+  .eb-right .blogcard-thumbnail{
+    margin-right: 0;
+    margin-left: 1.4%;
+  }
+
+  ///////////////////////////////////////
+  // サムネイル非表示
+  ///////////////////////////////////////
+  .no-thumbnail{
+    .card-thumb,
+      //.blogcard-thumbnail,
+    .widget-entry-card-pv{
+      display: none;
+    }
+
+    .card-content,
+      //.blogcard-wrap .blogcard .blogcard-content,
+    .widget-entry-cards .widget-entry-card-content{
+      margin: 0;
+    }
+
+    .widget-entry-cards div.widget-entry-card-content{
+      font-size: 18px;
+      margin-bottom: 0.6em;
+    }
+
+    .widget-entry-cards.large-thumb-on .card-title{
+      max-height: none;
+      position: static;
+    }
+
+    .entry-card-meta{
+      position: static;
+      background-color: transparent;
+      margin-top: 0.4em;
+    }
+
+    .entry-card-snippet,
+    .related-entry-card-snippet{
+      max-height: #{8 * 1.3}em;
+    }
+
+    .entry-card-day{
+      display: inline;
+    }
+
+    .entry-card-meta .entry-card-categorys{
+      display: inline;
+      >span{
+        margin-left: 0.6em;
+      }
+    }
+  }
+
+  img.emoji {
+    display: inline;
+    width: 1em;
+    height: auto;
+    vertical-align: text-bottom;
+    margin-right: 0.1em;
+  }
+}

@@ -18,6 +18,4 @@
 </script>
 
 <style lang="scss" scoped>
-  .main-container {
-  }
 </style>

@@ -4,12 +4,13 @@
         <div class="post-card">
             <div class="post-card-header">
                 <div class="post-card-tags">
+<!--                    <a v-for="post.tags"-->
                     <a href="https://yahoo.co.jp" class="tag">#AWS</a>
                     <a href="https://yahoo.co.jp" class="tag">#Laravel</a>
                     <a href="https://yahoo.co.jp" class="tag">#Vue.js</a>
                 </div>
                 <div class="post-card-title">{{ post.title.rendered }}</div>
-                <div class="post-card-sub"> 2019年11月21日（木）  </div>
+                <div class="post-card-sub">{{ post.date | moment }}</div>
             </div>
             <div class="post-card-feature">
                 {{ post.content.rendered | striphtml }}

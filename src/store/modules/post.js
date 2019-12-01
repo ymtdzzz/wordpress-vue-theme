@@ -32,7 +32,7 @@ const getters = {
     return recent.slice(0, limit)
   },
 
-  postToShow: state => state.post,
+  postToShow: state => state.post[0],
 
   recentPostsLoaded: state => state.loaded,
   postLoaded: state => state.loaded

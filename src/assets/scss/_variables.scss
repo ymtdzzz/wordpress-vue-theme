@@ -1,0 +1,109 @@
+//ブランドカラーまとめ
+$twitter_color: #1da1f2;
+$facebook_color: #3b5998;
+$hatebu_color: #2c6ebd;
+$google_plus_color: #dd4b39;
+$pocket_color: #ef4056;
+$line_color: #00c300;
+$linkedin_color: #0077b5;
+$website_color: #002561;
+$instagram_color: #405de6;
+$pinterest_color: #bd081c;
+$youtube_color: #cd201f;
+$note_color: #41c9b4;
+$flickr_color: #111;
+$amazon_color: #ff9900;
+$rakuten_color: #bf0000;
+$rakuten_room_color: #c61e79;
+$slack_color: #e01563;
+$github_color: #4078c0;
+$codepen_color: #333;
+$feedly_color: #2bb24c;
+$rss_color: #f26522;
+
+//汎用色
+//以下の色を変更したらブロックエディターの設定の変更する
+$red_color: #e60033;
+$pink_color: #e95295;
+$purple_color: #884898;
+$deep_color: #55295b;
+$indigo_color: #1e50a2;
+$blue_color: #0095d9;
+$light_blue_color: #2ca9e1;
+$cyan_color: #00a3af;
+$teal_color: #007b43;
+$green_color: #3eb370;
+$light_green_color: #8bc34a;
+$lime_color: #c3d825;
+$yellow_color: #ffd900;
+$amber_color: #ffc107;
+$orange_color: #f39800;
+$deep_orange_color: #ea5506;
+$brown_color: #954e2a;
+$grey_color: #949495;
+$blue_gray_color: #607d8b;
+$black_color: #333;
+$white_color: #fff;
+
+//フォント
+$default_font: "游ゴシック体", "Yu Gothic", "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
+$meiryo_font: "Meiryo", sans-serif;
+$navi_font: FontAwesome, $default_font;
+
+//テキスト色
+$text_color: $black_color;
+$pallid_text_color: #777;
+$x_pallid_text_color: #999;
+$white: #fff;
+
+//テキストサイズ
+$text_size_default: 18px;
+$text_size_s: 0.8em;
+$text_size_xs: 0.6em;
+
+//ボーダー色
+//$basic_border_color: #cccfd2;
+$basic_border_color: #ccc;
+$transparent_border_color: transparent;
+
+//色
+// $middle_thickness: #777879;
+// $thin: #cccdce;
+// $x_thin: #dddedf;
+$middle_thickness: #777;
+$thin: #ccc;
+$x_thin: #ddd;
+$xx_thin: #f3f4f5;
+$xxx_thin: #fafbfc;
+//$current_bgc: #eeeff0;
+$current_bgc: #eee;
+
+$select_bgc: #d8eaf2;
+$transpalent_black_bgc: rgba(51,51,51,0.7);
+
+//要素の丸め
+$basic_border_radius: 4px;
+$badge_border_radius: 2px;
+$middle_border_radius: 8px;
+
+//メインカラム
+$main_inner_width: 800px;
+$main_border_width: 1px;
+$main_border_style: solid ;
+$main_border_color: $basic_border_color;
+$main_padding_width: 29px;
+
+//メインカラムとサイドバーの余白
+$between_main_and_sidebar: 20px;
+
+//サイドバー
+$sidebar_inner_width: 336px;
+$sidebar_border_width: 1px;
+$sidebar_border_style: solid ;
+$sidebar_border_color: $basic_border_color;
+$sidebar_padding_width: 19px;
+
+$main_outer_width: $main_inner_width + $main_border_width*2 + $main_padding_width*2;
+$sidebar_outer_width: $sidebar_inner_width + $sidebar_border_width*2 + $sidebar_padding_width*2;
+
+$site_width: $main_outer_width + $between_main_and_sidebar + $sidebar_outer_width;
