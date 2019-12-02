@@ -3,7 +3,7 @@
 
         <div class="article-header-container">
             <transition name="slide-fade" mode="out-in">
-                <div v-if="postLoaded">
+                <div class="article-header-image" v-if="postLoaded" :style="{ backgroundImage: 'url(' + postToShow._embedded['wp:featuredmedia'][0].source_url + ')' }">
                     <div class="article-sub">
                         2019/12/12
                     </div>
@@ -59,10 +59,18 @@
     }
     .article-header-container {
         color: white;
-        min-height: 150px;
-        max-height: 300px;
-        padding: 40px 15% 30px 15%;
-        background-color: #000;
+        height: 250px;
+        background-color: black;
+
+        .article-header-image {
+          height: 180px;
+          padding: 40px 15% 30px 15%;
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color:rgba(0,0,0,0.68);
+          background-blend-mode:darken;
+        }
 
         .article-title {
             font-size: 2.2rem;
