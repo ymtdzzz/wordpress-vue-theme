@@ -11,6 +11,18 @@ const createPostSlug = post => {
   return post
 }
 
+const createPostThumbnail = post => {
+	// if (_.isNil(post['_embedded']['wp:featuredmedia'][0].source_url)) {
+	// 	post.thumbnail_url = ''
+	// } else {
+	// 	let thumbnail_url = post['_embedded']['wp:featuredmedia'][0].source_url
+	// 	post.thumbnail_url = thumbnail_url
+	// 	console.log(post.thumbnail_url)
+	// }
+	// if ()
+	return post
+}
+
 // initial state
 const state = {
   recent: [],
@@ -45,7 +57,7 @@ const actions = {
     commit(types.POSTS_LOADED, false)
 
     PostsRepository.getPosts(limit, posts => {
-      // 取得した投稿のフルパスとタグを取得
+      // 取得した投稿のフルパスを取得
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
       })
@@ -58,13 +70,16 @@ const actions = {
     commit(types.POSTS_LOADED, false)
 
     PostsRepository.getPostBySlug(slug, post => {
-      if (_.isEmpty(post)) {
-        console.log('empty')
+      if (_.isNil(post)) {
+        console.log('nil')
       //  TODO: 404ページに移動
       } else {
+      	// サムネ取得（戻り値は結果が一つであっても配列です)
+		post[0] = createPostThumbnail(post)
         commit(types.STORE_FETCHED_POST, { post })
       }
       commit(types.POSTS_LOADED, true)
+		console.log(post)
     })
   }
 }
