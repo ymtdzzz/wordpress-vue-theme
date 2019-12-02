@@ -4,6 +4,8 @@ import createPersistedState from "vuex-persistedstate";
 import * as actions from './actions'
 import * as getters from './getters'
 import post from './modules/post'
+import tag from './modules/tag'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -14,6 +16,8 @@ export default new Vuex.Store({
   getters,
   modules: {
     post,
+    tag,
+    user,
   },
   strict: debug,
   plugins: [createPersistedState()]

@@ -10,7 +10,8 @@
             </ul>
             <div class="search-container">
                 <div class="search-form">
-                    search form
+                    <input class="search-input" type="text" placeholder="Search">
+                    <button class="search-button"><v-fa icon="search"/></button>
                 </div>
             </div>
         </div>
@@ -71,13 +72,39 @@
         }
     }
     .search-container {
-        display: table;
-        height: 100%;
-        text-align: right;
+        position: relative;
 
         .search-form {
-            display: table-cell;
-            vertical-align: middle;
+            position: absolute;
+            display: flex;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            width: 220px;
+
+            .search-input {
+                border: none;
+                margin: 0;
+                /*padding: 0;*/
+                background: none;
+                vertical-align: middle;
+                height: 18px;
+                width: 80%;
+                padding: 5px;
+                flex: 5;
+                color: #aaa;
+            }
+
+            .search-button {
+                flex: 1;
+                background: none;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
         }
     }
 

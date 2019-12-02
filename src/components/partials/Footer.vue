@@ -8,7 +8,7 @@
         Footer Container 2
       </div>
       <div class="footer-widget">
-        Footer Container 3
+        <profile />
       </div>
     </div>
     <footer class="copy-right">
@@ -16,6 +16,16 @@
     </footer>
   </div>
 </template>
+
+<script>
+  import Profile from '../widgets/Profile'
+
+  export default {
+    components: {
+      Profile
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   .site-footer {
