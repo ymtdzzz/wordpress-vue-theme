@@ -2,7 +2,7 @@
     <div class="card-container">
         <router-link :to="post.slug" class="card-link"></router-link>
         <div class="post-card">
-            <div class="post-card-header">
+            <div class="post-card-header" :style="{ backgroundImage: 'url(' + post.thumbnail_url + ')' }">
                 <div class="post-card-tags">
                     <a v-for="tag_name in post.tag_names" class="tag">#{{ tag_name }}</a>
                 </div>
@@ -96,11 +96,14 @@
     }
 
     .post-card-header {
-        background-color: white;
         flex: 1 1 auto;
         padding: 15px 25px;
         border-radius: 5px 5px 0 0;
-        border-bottom: 1px solid #aaa;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: rgba(255,255,255,0.9);
+        background-blend-mode: lighten;
     }
     
     .post-card-title {

@@ -3,7 +3,7 @@
 
         <div class="article-header-container">
             <transition name="slide-fade" mode="out-in">
-                <div class="article-header-image" v-if="postLoaded" :style="{ backgroundImage: 'url(' + '' + ')' }">
+                <div class="article-header-image" v-if="postLoaded" :style="{ backgroundImage: 'url(' + postToShow.thumbnail_url + ')' }">
                     <div class="article-sub">
                         2019/12/12
                     </div>

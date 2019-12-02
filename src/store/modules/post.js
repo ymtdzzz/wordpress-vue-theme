@@ -12,14 +12,8 @@ const createPostSlug = post => {
 }
 
 const createPostThumbnail = post => {
-	// if (_.isNil(post['_embedded']['wp:featuredmedia'][0].source_url)) {
-	// 	post.thumbnail_url = ''
-	// } else {
-	// 	let thumbnail_url = post['_embedded']['wp:featuredmedia'][0].source_url
-	// 	post.thumbnail_url = thumbnail_url
-	// 	console.log(post.thumbnail_url)
-	// }
-	// if ()
+    let thumbnail_url = _.get(post, '_embedded.wp:featuredmedia.0.source_url', '')
+    post.thumbnail_url = thumbnail_url
 	return post
 }
 
@@ -60,6 +54,7 @@ const actions = {
       // 取得した投稿のフルパスを取得
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
+        posts[i] = createPostThumbnail(post)
       })
 
       commit(types.STORE_FETCHED_POSTS, { posts })
@@ -75,11 +70,10 @@ const actions = {
       //  TODO: 404ページに移動
       } else {
       	// サムネ取得（戻り値は結果が一つであっても配列です)
-		post[0] = createPostThumbnail(post)
+		post[0] = createPostThumbnail(post[0])
         commit(types.STORE_FETCHED_POST, { post })
       }
       commit(types.POSTS_LOADED, true)
-		console.log(post)
     })
   }
 }
