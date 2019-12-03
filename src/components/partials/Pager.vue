@@ -2,16 +2,25 @@
     <div class="pager">
         <ul class="pagination">
             <li class="pre">
-                <router-link v-if="is_first" to="#"><span>«</span></router-link>
+                <span class="disabled-button" v-if="is_first"><span>«</span></span>
                 <router-link v-else :to="{ name: 'Posts', params: { page: 1 } }"><span>«</span></router-link>
             </li>
-            <li class="pre"><router-link :to="{ name: 'Posts', params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link></li>
+            <li class="pre">
+                <span class="disabled-button" v-if="is_first"><span><</span></span>
+                <router-link v-else :to="{ name: 'Posts', params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link>
+            </li>
             <li v-for="index in pager_nums" :key="index">
               <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
               <router-link v-else :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
             </li>
-            <li class="next"><router-link :to="{ name: 'Posts', params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link></li>
-            <li class="next"><router-link :to="{ name: 'Posts', params: { page: total_pages } }"><span>»</span></router-link></li>
+            <li class="next">
+                <span class="disabled-button" v-if="is_last"><span>></span></span>
+                <router-link v-else :to="{ name: 'Posts', params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link>
+            </li>
+            <li class="next">
+                <span class="disabled-button" v-if="is_last"><span>»</span></span>
+                <router-link v-else :to="{ name: 'Posts', params: { page: total_pages } }"><span>»</span></router-link>
+            </li>
         </ul>
     </div>
 </template>
@@ -127,6 +136,23 @@
                         color: #fff;
                         background: black;
                     }
+
+                    span {
+                        display:table-cell;
+                        vertical-align:middle;
+                    }
+                }
+
+                .disabled-button {
+                    color: #aaa;
+                    vertical-align: middle;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    display:table;
 
                     span {
                         display:table-cell;
