@@ -2,11 +2,10 @@
     <div class="pager">
         <ul class="pagination">
             <li class="pre"><a href="#"><span>«</span></a></li>
-            <li v-for="index in parseInt(total_pages)" :key="index">
-              <a v-if="index === parseInt(current_page)" href="#" class="active"><span>{{ index }}</span></a>
-              <a v-else href="#"><span>{{ index }}</span></a>
+            <li v-for="index in pager_nums" :key="index">
+              <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: 'Home', params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
+              <router-link v-else :to="{ name: 'Home', params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
             </li>
-<!--            <li><a href="#" class="active"><span>1</span></a></li>-->
             <li class="next"><a href="#"><span>»</span></a></li>
         </ul>
     </div>
@@ -18,7 +17,49 @@
           'total_pages',
           'current_page'
       ],
-
+      data: () => {
+        return {
+            start_page: 0,
+            end_page: 0,
+            pager_nums: 0,
+        }
+      },
+      methods: {
+          initPager() {
+              const current_page = parseInt(this.current_page)
+              const total_pages = parseInt(this.total_pages)
+              const start_diff = current_page - 3
+              const end_diff = current_page + 2
+              if (start_diff <= 0 && end_diff > total_pages) {
+                  this.start_page = 1
+                  this.end_page = total_pages
+              } else if (start_diff <= 0 && end_diff <= total_pages) {
+                  this.start_page = 1
+                  this.end_page = end_diff + Math.abs(start_diff)
+                  if (this.end_page > total_pages) {
+                      this.end_page = total_pages
+                  }
+              } else if (start_diff > 0 && end_diff > total_pages) {
+                  this.start_page = start_diff - (end_diff - total_pages)
+                  this.end_page = total_pages
+                  if (this.start_page <= 0) {
+                      this.start_page = 1
+                  }
+              } else {
+                  this.start_page = start_diff + 1
+                  this.end_page = end_diff
+              }
+              this.pager_nums = this.end_page - this.start_page + 1
+          }
+      },
+      mounted() {
+        this.initPager()
+      },
+      watch: {
+          '$route' (to, from) {
+              this.initPager()
+          }
+      }
   }
 </script>
 

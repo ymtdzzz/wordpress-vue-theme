@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <pickup-carousel />
-    <recent-posts limit="10" :page="this.$route.params.page"/>
+    <recent-posts limit="5" :page="this.$route.params.page"/>
   </div>
 </template>
 
