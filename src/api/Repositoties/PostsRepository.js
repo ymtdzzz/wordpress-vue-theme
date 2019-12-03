@@ -3,14 +3,16 @@ import _ from 'lodash'
 
 const resource = "/posts?_embed"
 export default {
-	getPosts(limit, callback) {
+	getPosts(limit, page = 1, callback) {
 		if (_.isEmpty(limit)) {
 			let limit = 5
 		}
 		return Repository.get(
-			`${resource}&per_page=${limit}`
+			`${resource}&per_page=${limit}&page=${page}`
 		)
 		.then(response => {
+			response.data.total_pages = _.get(response, 'headers.x-wp-totalpages]', '')
+			response.data.current_page = page
 			callback(response.data)
 		})
 		.catch(e => {

@@ -2,15 +2,25 @@
     <div class="pager">
         <ul class="pagination">
             <li class="pre"><a href="#"><span>«</span></a></li>
-            <li><a href="#" class="active"><span>1</span></a></li>
-            <li><a href="#"><span>2</span></a></li>
-            <li><a href="#"><span>3</span></a></li>
-            <li><a href="#"><span>4</span></a></li>
-            <li><a href="#"><span>5</span></a></li>
+            <li v-for="index in parseInt(total_pages)" :key="index">
+              <a v-if="index === parseInt(current_page)" href="#" class="active"><span>{{ index }}</span></a>
+              <a v-else href="#"><span>{{ index }}</span></a>
+            </li>
+<!--            <li><a href="#" class="active"><span>1</span></a></li>-->
             <li class="next"><a href="#"><span>»</span></a></li>
         </ul>
     </div>
 </template>
+
+<script>
+  export default {
+      props: [
+          'total_pages',
+          'current_page'
+      ],
+
+  }
+</script>
 
 <style lang="scss" scoped>
     .pager {
