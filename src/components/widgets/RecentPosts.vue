@@ -5,10 +5,10 @@
                 <div v-for="post in recentPosts(limit)" :key="post.id">
                     <post-card :post="post" />
                 </div>
-                <pager :total_pages="totalPages" :current_page="currentPage"/>
             </div>
             <Loader v-else/>
         </transition>
+            <pager :total_pages="totalPages" :current_page="currentPage"/>
     </div>
 </template>
 

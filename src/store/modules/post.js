@@ -43,11 +43,10 @@ const getters = {
   },
 
   postToShow: state => state.post[0],
-
   recentPostsLoaded: state => state.loaded,
   postLoaded: state => state.loaded,
-	totalPages: state => state.total_pages,
-	currentPage: state => state.current_page,
+  totalPages: state => state.total_pages,
+  currentPage: state => state.current_page,
 }
 
 // actions

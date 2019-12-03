@@ -1,17 +1,24 @@
 <template>
     <div class="pager">
         <ul class="pagination">
-            <li class="pre"><a href="#"><span>«</span></a></li>
-            <li v-for="index in pager_nums" :key="index">
-              <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: 'Home', params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
-              <router-link v-else :to="{ name: 'Home', params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
+            <li class="pre">
+                <router-link v-if="is_first" to="#"><span>«</span></router-link>
+                <router-link v-else :to="{ name: 'Posts', params: { page: 1 } }"><span>«</span></router-link>
             </li>
-            <li class="next"><a href="#"><span>»</span></a></li>
+            <li class="pre"><router-link :to="{ name: 'Posts', params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link></li>
+            <li v-for="index in pager_nums" :key="index">
+              <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
+              <router-link v-else :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
+            </li>
+            <li class="next"><router-link :to="{ name: 'Posts', params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link></li>
+            <li class="next"><router-link :to="{ name: 'Posts', params: { page: total_pages } }"><span>»</span></router-link></li>
         </ul>
     </div>
 </template>
 
 <script>
+  import Constants from "../../Constants";
+
   export default {
       props: [
           'total_pages',
@@ -22,6 +29,8 @@
             start_page: 0,
             end_page: 0,
             pager_nums: 0,
+            is_first: false,
+            is_last: false,
         }
       },
       methods: {
@@ -40,16 +49,28 @@
                       this.end_page = total_pages
                   }
               } else if (start_diff > 0 && end_diff > total_pages) {
-                  this.start_page = start_diff - (end_diff - total_pages)
+                  this.start_page = start_diff - (end_diff - total_pages - 1)
                   this.end_page = total_pages
                   if (this.start_page <= 0) {
                       this.start_page = 1
                   }
+                  console.log(this.end_page)
+                  console.log(this.start_page)
               } else {
                   this.start_page = start_diff + 1
                   this.end_page = end_diff
               }
               this.pager_nums = this.end_page - this.start_page + 1
+              if (current_page === 1) {
+                  this.is_first = true
+              } else {
+                  this.is_first = false
+              }
+              if (current_page === total_pages) {
+                  this.is_last = true
+              } else {
+                  this.is_last = false
+              }
           }
       },
       mounted() {
@@ -57,6 +78,9 @@
       },
       watch: {
           '$route' (to, from) {
+              this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: this.$route.params.page })
+          },
+          'current_page' () {
               this.initPager()
           }
       }
