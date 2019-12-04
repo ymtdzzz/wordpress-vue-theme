@@ -1,9 +1,15 @@
 <template>
-
+  <div class="main-container">
+    <category-posts :limit="5" page="1" category_id="12"/>
+  </div>
 </template>
 
 <script>
-  export default {
+  import CategoryPosts from "./widgets/CategoryPosts"
 
+  export default {
+    components: {
+        CategoryPosts
+    }
   }
 </script>

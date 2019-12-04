@@ -31,27 +31,44 @@
     import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
+    import router from "../router"
 
     export default {
         computed: {
             ...mapGetters({
                 postToShow: "postToShow",
                 postLoaded: "postLoaded",
-                loadedPosts: "loadedPosts",
+                loadedRecentPosts: "loadedRecentPosts",
+                loadedCategoryPosts: "loadedCategoryPosts"
             })
         },
         mounted() {
-            if (this.loadedPosts.length) {
-                // 選択した記事が既に読み込み済だった場合はそれを表示する
-                this.loadedPosts.map((post, index) => {
-                    const params = this.$route.params
-                    const slug = `/${params.year}/${params.month}/${params.day}/${params.postSlug}/`
-                    if (post.slug === slug) {
-                      this.$store.dispatch("setPostToShow", { postToSave: post })
-                    }
-                })
-            } else {
-              this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
+            const path_name = router.currentRoute.name
+            console.log(path_name)
+            if (path_name === 'Post' || path_name === "Home") {
+                if (this.loadedRecentPosts.length) {
+                    this.loadedRecentPosts.map((post, index) => {
+                        const params = this.$route.params
+                        const slug = `/${params.year}/${params.month}/${params.day}/${params.postSlug}/`
+                        if (post.slug === slug) {
+                            this.$store.dispatch("setPostToShow", { postToSave: post })
+                        }
+                    })
+                } else {
+                    this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
+                }
+            } else if (path_name === 'Category') {
+                if (this.loadedCategoryPosts.length) {
+                    this.loadedCategoryPosts.map((post, index) => {
+                        const params = this.$route.params
+                        const slug = `/${params.year}/${params.month}/${params.day}/${params.postSlug}/`
+                        if (post.slug === slug) {
+                            this.$store.dispatch("setPostToShow", { postToSave: post })
+                        }
+                    })
+                } else {
+                    this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
+                }
             }
         },
         components: {

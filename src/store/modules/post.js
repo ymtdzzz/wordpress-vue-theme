@@ -21,6 +21,9 @@ const createPostThumbnail = post => {
 // initial state
 const state = {
   recent: [],
+  category: [],
+  tag: [],
+  search: [],
   post: {},
   total_pages: 0,
   current_page: 0,
@@ -29,6 +32,7 @@ const state = {
 
 // getters
 const getters = {
+  // 新しい順の記事情報
   recentPosts: state => limit => {
     if (
       !limit ||
@@ -41,21 +45,71 @@ const getters = {
     let recent = state.recent
     return recent.slice(0, limit)
   },
-  loadedPosts: state => state.recent,
-
-  postToShow: state => state.post[0],
+  loadedRecentPosts: state => state.recent,
   recentPostsLoaded: state => state.loaded,
+
+	// カテゴリーでフィルタした記事情報
+	categoryPosts: state => limit => {
+		if (
+			!limit ||
+			!_.isNumber(limit) ||
+			_.isNull(limit) ||
+			typeof limit == "undefined"
+		) {
+			return state.category
+		}
+		let category = state.category
+		return category.slice(0, limit)
+	},
+	loadedCategoryPosts: state => state.category,
+	categoryPostsLoaded: state => state.loaded,
+
+	// タグでフィルタした記事情報
+	tagPosts: state => limit => {
+		if (
+			!limit ||
+			!_.isNumber(limit) ||
+			_.isNull(limit) ||
+			typeof limit == "undefined"
+		) {
+			return state.tag
+		}
+		let tag = state.tag
+		return tag.slice(0, limit)
+	},
+	loadedTagPosts: state => state.tag,
+	tagPostsLoaded: state => state.loaded,
+
+	// 検索ワードでフィルタした記事情報
+	searchPosts: state => limit => {
+		if (
+			!limit ||
+			!_.isNumber(limit) ||
+			_.isNull(limit) ||
+			typeof limit == "undefined"
+		) {
+			return state.search
+		}
+		let search = state.search
+		return search.slice(0, limit)
+	},
+	loadedSearchPosts: state => state.search,
+	searchPostsLoaded: state => state.loaded,
+
+  // 選択した記事情報
+  postToShow: state => state.post[0],
   postLoaded: state => state.loaded,
+
   totalPages: state => state.total_pages,
   currentPage: state => state.current_page,
 }
 
 // actions
 const actions = {
-  getPosts({ commit }, { limit, page, category_id, tag_id, search_keyword }) {
+  getPosts({ commit }, { limit, page}) {
     commit(types.POSTS_LOADED, false)
 
-    PostsRepository.getPosts(limit, page, category_id, tag_id, search_keyword, posts => {
+    PostsRepository.getPosts(limit, page, posts => {
       // 取得した投稿のフルパスを取得
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
@@ -67,6 +121,22 @@ const actions = {
 		commit(types.STORE_POSTS_TOTAL_PAGES, posts.total_pages)
       commit(types.POSTS_LOADED, true)
     })
+  },
+  getPostsByCategory({ commit }, { limit, page, category_id }) {
+	  commit(types.CATEGORY_POSTS_LOADED, false)
+
+	  PostsRepository.getPostsByCategory(limit, page, category_id, posts => {
+		  // 取得した投稿のフルパスを取得
+		  posts.map((post, i) => {
+			  posts[i] = createPostSlug(post)
+			  posts[i] = createPostThumbnail(post)
+		  })
+
+		  commit(types.STORE_FETCHED_CATEGORY_POSTS, {posts})
+		  commit(types.STORE_POSTS_CURRENT_PAGE, posts.current_page)
+		  commit(types.STORE_POSTS_TOTAL_PAGES, posts.total_pages)
+		  commit(types.CATEGORY_POSTS_LOADED, true)
+	  })
   },
   getPostBySlug({ commit }, { slug }) {
     commit(types.POSTS_LOADED, false)
@@ -107,6 +177,14 @@ const mutations = {
   [types.POSTS_LOADED](state, val) {
     state.loaded = val
   },
+
+	[types.STORE_FETCHED_CATEGORY_POSTS](state, { posts }) {
+		state.category = posts
+	},
+
+	[types.CATEGORY_POSTS_LOADED](state, val) {
+		state.loaded = val
+	},
 
 	[types.STORE_POSTS_TOTAL_PAGES](state, val) {
 		state.total_pages = val
