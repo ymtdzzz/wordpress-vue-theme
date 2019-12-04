@@ -5,6 +5,7 @@ import Router from "vue-router";
 import App from '../App'
 import Home from '../components/Home.vue'
 import Post from '../components/Post'
+import Category from '../components/Category'
 // import Page from "../components/Page/Page.vue"
 import NotFound from '../components/NotFound'
 
@@ -28,6 +29,11 @@ const router = new Router({
             name: "Post",
             component: Post
         },
+		{
+			path: "/category/:category",
+			name: "Category",
+			component: Category
+		},
         {
             path: "/error/404",
             component: NotFound

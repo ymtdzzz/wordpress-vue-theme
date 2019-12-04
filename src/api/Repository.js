@@ -9,7 +9,7 @@ const base_http = axios.create({
     baseURL
 })
 
-export const menu_http = exios.create({
+export const menu_http = axios.create({
 	menuURL
 })
 

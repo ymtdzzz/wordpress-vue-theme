@@ -2,11 +2,9 @@
     <div class="global-nav-container">
         <div class="global-nav">
             <ul class="nav">
-                <li><a href="#">AWS</a></li>
-                <li><a href="#">PHP</a></li>
-                <li><a href="#">Mac</a></li>
-                <li><a href="#">Win</a></li>
-                <li><a href="#">Other</a></li>
+                <li v-if="menuLoaded" v-for="menu in menus">
+                  <router-link :to="{ name: 'Category', params: { category: menu.title } }">{{ menu.title }}</router-link>
+                </li>
             </ul>
             <div class="search-container">
                 <div class="search-form">
@@ -18,6 +16,23 @@
 
     </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  import Constants from "../../Constants";
+
+  export default {
+      computed: {
+          ...mapGetters({
+              menus: "menus",
+              menuLoaded: "menuLoaded"
+          })
+      },
+      mounted() {
+          this.$store.dispatch('getMenuBySlug', { slug: Constants.LOCATION_SLUG_HEADER_2 })
+      }
+  }
+</script>
 
 <style lang="scss" scoped>
     .global-nav-container {

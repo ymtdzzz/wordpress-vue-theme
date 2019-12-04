@@ -10,15 +10,14 @@ const state = {
 
 // getters
 const getters = {
-	menu: state => state.menu,
-	MenuLoaded: state => state.loaded
+	menus: state => state.menu.items,
+	menuLoaded: state => state.loaded
 }
 
 // actions
 const actions = {
 	getMenuBySlug({ commit }, { slug }) {
 		commit(types.MENU_LOADED, false)
-
 
 		MenusRepository.getMenuBySlug(slug, menu => {
 			if (_.isEmpty(menu)) {
