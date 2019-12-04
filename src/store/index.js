@@ -7,6 +7,7 @@ import post from './modules/post'
 import tag from './modules/tag'
 import user from './modules/user'
 import menu from './modules/menu'
+import category from "./modules/category";
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     tag,
     user,
     menu,
+    category,
   },
   strict: debug,
   plugins: [createPersistedState()]

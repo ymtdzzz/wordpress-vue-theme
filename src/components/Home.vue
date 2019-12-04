@@ -8,7 +8,7 @@
 <script>
   import RecentPosts from "./widgets/RecentPosts"
   import PickupCarousel from "./partials/PickupCarousel"
-  import Constants from "../Constants";
+  import Constants from "../Constants"
 
   export default {
     data: () => {

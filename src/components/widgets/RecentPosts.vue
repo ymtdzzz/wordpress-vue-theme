@@ -24,6 +24,9 @@
         props: [
             'limit',
             'page',
+            'category_id',
+            'tag_id',
+            'search_keyword',
         ],
         computed: {
             ...mapGetters({
@@ -36,7 +39,13 @@
         mounted() {
             if (!(this.currentPage === this.page)) {
               // 余計な通信防止
-              this.$store.dispatch("getPosts", { limit: this.limit, page: this.page })
+              this.$store.dispatch("getPosts", {
+                  limit: this.limit,
+                  page: this.page,
+                  category_id: this.category_id,
+                  tag_id: this.tag_id,
+                  search_keyword: this.search_keyword
+              })
             }
         },
         components: {

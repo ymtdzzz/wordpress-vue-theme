@@ -1,4 +1,4 @@
-// menuと書いていますが性格にはmenuに紐づいたlocationです。
+// menuと書いていますが正確にはmenuに紐づいたlocationです。
 import { menu_http } from "../Repository"
 import _ from 'lodash'
 import Constants from "../../Constants";
