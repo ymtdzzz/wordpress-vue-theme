@@ -52,10 +52,10 @@ const getters = {
 
 // actions
 const actions = {
-  getPosts({ commit }, { limit, page }) {
+  getPosts({ commit }, { limit, page, category_id, tag_id, search_keyword }) {
     commit(types.POSTS_LOADED, false)
 
-    PostsRepository.getPosts(limit, page, posts => {
+    PostsRepository.getPosts(limit, page, category_id, tag_id, search_keyword, posts => {
       // 取得した投稿のフルパスを取得
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
