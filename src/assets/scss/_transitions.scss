@@ -10,8 +10,12 @@
   opacity: 0;
 }
 
-.recent-posts {
-  width: 70%;
-  max-width: 1000px;
-  margin: 20px auto;
+.height-change-enter-active, .height-change-leave-active {
+  transition-duration: .3s;
+  transition-property: height, opacity;
+  transition-timing-function: ease;
+  overflow: hidden;
+}
+.height-change-enter, .height-change-leave-to {
+  opacity: 0;
 }

@@ -4,3 +4,9 @@
 @import "mixins";
 @import "transitions";
 @import "article";
+
+.recent-posts {
+  width: 70%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
