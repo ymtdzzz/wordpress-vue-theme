@@ -5,7 +5,7 @@
             <transition name="slide-fade" mode="out-in">
                 <div class="article-header-image" v-if="postLoaded" :style="{ backgroundImage: 'url(' + postToShow.thumbnail_url + ')' }">
                     <div class="article-sub">
-                        2019/12/12
+                      {{ postToShow.date | moment }}
                     </div>
                     <div class="article-title">
                         {{ postToShow.title.rendered }}
@@ -37,10 +37,22 @@
             ...mapGetters({
                 postToShow: "postToShow",
                 postLoaded: "postLoaded",
+                loadedPosts: "loadedPosts",
             })
         },
         mounted() {
-            this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
+            if (this.loadedPosts.length) {
+                // 選択した記事が既に読み込み済だった場合はそれを表示する
+                this.loadedPosts.map((post, index) => {
+                    const params = this.$route.params
+                    const slug = `/${params.year}/${params.month}/${params.day}/${params.postSlug}/`
+                    if (post.slug === slug) {
+                      this.$store.dispatch("setPostToShow", { postToSave: post })
+                    }
+                })
+            } else {
+              this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
+            }
         },
         components: {
             Loader

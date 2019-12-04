@@ -2,7 +2,7 @@
     <div>
         <app-header/>
         <div>
-            <transition name="height-change" mode="out-in" @before-leave="beforeLeave" @enter="enter" @after-enter="afterEnter">
+            <transition name="slide-fade">
                 <router-view/>
             </transition>
         </div>

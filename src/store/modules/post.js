@@ -22,8 +22,8 @@ const createPostThumbnail = post => {
 const state = {
   recent: [],
   post: {},
-  total_pages: 1,
-  current_page: 1,
+  total_pages: 0,
+  current_page: 0,
   loaded: false
 }
 
@@ -41,6 +41,7 @@ const getters = {
     let recent = state.recent
     return recent.slice(0, limit)
   },
+  loadedPosts: state => state.recent,
 
   postToShow: state => state.post[0],
   recentPostsLoaded: state => state.loaded,
@@ -81,6 +82,15 @@ const actions = {
       }
       commit(types.POSTS_LOADED, true)
     })
+  },
+  setPostToShow({ commit }, { postToSave }) {
+  	commit(types.POSTS_LOADED, false)
+
+	  const post = []
+	  post[0] = postToSave
+
+	  commit(types.STORE_FETCHED_POST, { post })
+	  commit(types.POSTS_LOADED, true)
   }
 }
 

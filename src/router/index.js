@@ -42,6 +42,9 @@ const router = new Router({
         //     component: Page
         // }
     ],
+	scrollBehavior (to, from, savedPosition) {
+		return { x: 0, y: 0 }
+	},
     mode: "history",
     base: "",
 

@@ -34,7 +34,9 @@
             })
         },
         mounted() {
-            this.$store.dispatch("getPosts", { limit: this.limit, page: this.page })
+            if (!(this.currentPage === this.page)) {
+              this.$store.dispatch("getPosts", { limit: this.limit, page: this.page })
+            }
         },
         components: {
             Post,
