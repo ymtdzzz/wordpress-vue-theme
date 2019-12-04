@@ -3,30 +3,31 @@
         <ul class="pagination">
             <li class="pre">
                 <span class="disabled-button" v-if="is_first"><span>«</span></span>
-                <router-link v-else :to="{ name: 'Posts', params: { page: 1 } }"><span>«</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: 1 } }"><span>«</span></router-link>
             </li>
             <li class="pre">
                 <span class="disabled-button" v-if="is_first"><span><</span></span>
-                <router-link v-else :to="{ name: 'Posts', params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link>
             </li>
             <li v-for="index in pager_nums" :key="index">
-              <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
-              <router-link v-else :to="{ name: 'Posts', params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
+              <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: current_path, params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
+              <router-link v-else :to="{ name: current_path, params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
             </li>
             <li class="next">
                 <span class="disabled-button" v-if="is_last"><span>></span></span>
-                <router-link v-else :to="{ name: 'Posts', params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link>
             </li>
             <li class="next">
                 <span class="disabled-button" v-if="is_last"><span>»</span></span>
-                <router-link v-else :to="{ name: 'Posts', params: { page: total_pages } }"><span>»</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: total_pages } }"><span>»</span></router-link>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-  import Constants from "../../Constants";
+  import Constants from "../../Constants"
+  import router from "../../router"
 
   export default {
       props: [
@@ -40,6 +41,7 @@
             pager_nums: 0,
             is_first: false,
             is_last: false,
+            current_path: router.currentRoute.name
         }
       },
       methods: {
@@ -63,8 +65,6 @@
                   if (this.start_page <= 0) {
                       this.start_page = 1
                   }
-                  console.log(this.end_page)
-                  console.log(this.start_page)
               } else {
                   this.start_page = start_diff + 1
                   this.end_page = end_diff
@@ -87,7 +87,8 @@
       },
       watch: {
           '$route' (to, from) {
-              this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: this.$route.params.page })
+              console.log('fafoejfiowjio')
+              this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: this.$route.params.page, category_id: this.$route.params.category_id })
           },
           'current_page' () {
               this.initPager()
