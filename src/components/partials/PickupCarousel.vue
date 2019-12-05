@@ -29,7 +29,7 @@
     .pickup-carousel-container {
 
         .carousel-slide {
-            height: 500px;
+            height: 300px;
             background-color: #666;;
         }
     }

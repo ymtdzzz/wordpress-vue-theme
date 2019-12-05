@@ -1,6 +1,6 @@
 <template>
   <div class="loader-container">
-    <div class="hollow-dots-spinner" :style="spinnerStyle">
+    <div class="hollow-dots-spinner" style="spinnerStyle">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>

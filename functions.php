@@ -45,4 +45,6 @@ function ag_filter_post_json($response, $post, $context) {
 	return $response;
 }
 
+add_theme_support('post-thumbnails');
+
 add_filter( 'rest_prepare_post', 'ag_filter_post_json', 10, 3 );

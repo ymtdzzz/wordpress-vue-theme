@@ -3,16 +3,16 @@
 
         <div class="article-header-container">
             <transition name="slide-fade" mode="out-in">
-                <div class="article-header-image" v-if="pageLoaded">
+                <div class="article-header-image" v-if="pageLoaded" :style="{ backgroundImage: 'url(' + pageToShow.thumbnail_url + ')' }">
                     <div class="article-sub">
                       {{ pageToShow.date | moment }}
                     </div>
                     <div class="article-title">
                         {{ pageToShow.title.rendered }}
                     </div>
-<!--                    <div class="article-tags">-->
-<!--                        <a href="#" v-for="tag_name in pageToShow.tag_names" class="tag">#{{ tag_name }}</a>-->
-<!--                    </div>-->
+                    <div class="article-tags">
+                        <a href="#" v-for="tag_name in pageToShow.tag_names" class="tag">#{{ tag_name }}</a>
+                    </div>
                 </div>
             </transition>
         </div>

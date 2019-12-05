@@ -5,6 +5,12 @@ import PagesRepository from "../../api/Repositoties/PagesRepository";
 
 const Pages = RepositoryFactory.get('pages')
 
+const createPageThumbnail = page => {
+	let thumbnail_url = _.get(page, '_embedded.wp:featuredmedia.0.source_url', '')
+	page.thumbnail_url = thumbnail_url
+	return page
+}
+
 // initial state
 const state = {
 	page: {},
@@ -13,7 +19,7 @@ const state = {
 
 // getters
 const getters = {
-	pageToShow: state => state.page,
+	pageToShow: state => state.page[0],
 	pageLoaded: state => state.loaded,
 }
 
@@ -27,7 +33,8 @@ const actions = {
 				console.log('nil')
 				//  TODO: 404ページに移動
 			} else {
-				commit(types.STORE_FETCHED_POST, { page })
+				page[0] = createPageThumbnail(page[0])
+				commit(types.STORE_FETCHED_PAGE, { page })
 			}
 			commit(types.PAGE_LOADED, true)
 		})
