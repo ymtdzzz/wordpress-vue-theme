@@ -8,7 +8,7 @@
             <div class="header-right-container">
                 <ul class="page-nav">
                   <li v-if="pageMenuLoaded" v-for="menu in pageMenus">
-                    <router-link :to="{ name: 'Page', params: { slug: menu.title } }">{{ menu.title }}</router-link>
+                    <router-link :to="{ name: 'Page', params: { pageSlug: menu.title } }">{{ menu.title }}</router-link>
                   </li>
                 </ul>
             </div>

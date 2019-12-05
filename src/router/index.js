@@ -39,7 +39,7 @@ const router = new Router({
             redirect: "/error/404"
         },
         {
-            path: "/:pageSlug",
+            path: "/page/:pageSlug",
             name: "Page",
             component: Page
         }

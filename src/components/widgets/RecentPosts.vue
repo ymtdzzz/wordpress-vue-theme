@@ -39,6 +39,7 @@
         mounted() {
             if (!(this.currentPage === this.page)) {
               // 余計な通信防止
+            }
               this.$store.dispatch("getPosts", {
                   limit: this.limit,
                   page: this.page,
@@ -46,7 +47,6 @@
                   tag_id: this.tag_id,
                   search_keyword: this.search_keyword
               })
-            }
         },
         components: {
             Post,
