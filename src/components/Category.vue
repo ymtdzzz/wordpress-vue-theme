@@ -1,13 +1,17 @@
 <template>
     <div class="main-container">
+      <transition name="slide-fade" mode="out-in">
         <recent-posts v-if=categoryLoaded :limit="limit" :category_id="categoryId" :page="page"/>
+        <loader v-else/>
+      </transition>
     </div>
 </template>
 
 <script>
     import RecentPosts from "./widgets/RecentPosts"
-    import Constants from "../Constants";
+    import Constants from "../Constants"
     import { mapGetters } from 'vuex'
+    import Loader from '../components/partials/Loader'
 
     export default {
         computed: {
@@ -23,13 +27,14 @@
             }
         },
         components:{
-            RecentPosts
+            RecentPosts,
+            Loader
         },
         mounted() {
             this.$store.dispatch('getCategoryIdBySlug', { slug: this.$route.params.category })
         },
         watch: {
-            '$route' (to, from) {
+            '$route.params.category' (to, from) {
                 this.$store.dispatch('getCategoryIdBySlug', { slug: this.$route.params.category })
             },
             categoryId (to, from) {

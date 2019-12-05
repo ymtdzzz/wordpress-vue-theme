@@ -14,11 +14,6 @@ Vue.use(Router);
 const router = new Router({
     routes: [
         {
-            path: "/",
-            name: "Home",
-            component: Home
-        },
-        {
             path: "/:page?",
             name: "Posts",
             component: Home

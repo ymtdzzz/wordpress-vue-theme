@@ -3,23 +3,23 @@
         <ul class="pagination">
             <li class="pre">
                 <span class="disabled-button" v-if="is_first"><span>«</span></span>
-                <router-link v-else :to="{ name: current_path, params: { page: 1 } }"><span>«</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: 1 } }" @click.native="onClickPager(1)"><span>«</span></router-link>
             </li>
             <li class="pre">
                 <span class="disabled-button" v-if="is_first"><span><</span></span>
-                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) - 1 } }"><span><</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) - 1 } }" @click.native="onClickPager"><span><</span></router-link>
             </li>
             <li v-for="index in pager_nums" :key="index">
               <router-link v-if="(index + start_page - 1) === parseInt(current_page)" :to="{ name: current_path, params: { page: (index + start_page - 1) } }" class="active"><span>{{ index + start_page - 1 }}</span></router-link>
-              <router-link v-else :to="{ name: current_path, params: { page: (index + start_page - 1) } }"><span>{{ index + start_page - 1 }}</span></router-link>
+              <router-link v-else :to="{ name: current_path, params: { page: (index + start_page - 1) } }" @click.native="onClickPager(index + start_page - 1)"><span>{{ index + start_page - 1 }}</span></router-link>
             </li>
             <li class="next">
                 <span class="disabled-button" v-if="is_last"><span>></span></span>
-                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) + 1 } }"><span>></span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: parseInt(current_page) + 1 } }" @click.native="onClickPager(parseInt(current_page) + 1)"><span>></span></router-link>
             </li>
             <li class="next">
                 <span class="disabled-button" v-if="is_last"><span>»</span></span>
-                <router-link v-else :to="{ name: current_path, params: { page: total_pages } }"><span>»</span></router-link>
+                <router-link v-else :to="{ name: current_path, params: { page: total_pages } }" @click.native="onClickPager(total_pages)"><span>»</span></router-link>
             </li>
         </ul>
     </div>
@@ -28,12 +28,18 @@
 <script>
   import Constants from "../../Constants"
   import router from "../../router"
+  import { mapGetters } from 'vuex'
 
   export default {
       props: [
           'total_pages',
           'current_page'
       ],
+      computed: {
+          ...mapGetters({
+              categoryId: 'categoryId',
+          })
+      },
       data: () => {
         return {
             start_page: 0,
@@ -80,16 +86,22 @@
               } else {
                   this.is_last = false
               }
+          },
+          onClickPager: function (page) {
+              if (this.current_path === 'Category') {
+                  this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: page, category_id: this.categoryId })
+              } else {
+                  this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: page })
+              }
           }
       },
       mounted() {
         this.initPager()
       },
       watch: {
-          '$route' (to, from) {
-              console.log('fafoejfiowjio')
-              this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: this.$route.params.page, category_id: this.$route.params.category_id })
-          },
+          // '$route' (to, from) {
+          //     this.$store.dispatch("getPosts", { limit: Constants.POSTS_LIST_LIMIT, page: this.$route.params.page, category_id: this.$route.params.category_id })
+          // },
           'current_page' () {
               this.initPager()
           }

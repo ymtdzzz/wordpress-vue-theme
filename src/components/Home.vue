@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <pickup-carousel />
-    <recent-posts :limit="limit" :page="this.$route.params.page"/>
+    <recent-posts :limit="limit" :page="page"/>
   </div>
 </template>
 
@@ -11,9 +11,10 @@
   import Constants from "../Constants"
 
   export default {
-    data: () => {
+    data() {
       return {
-        limit: Constants.POSTS_LIST_LIMIT
+        limit: Constants.POSTS_LIST_LIMIT,
+        page: this.$route.params.page ? this.$route.params.page : '1',
       }
     },
     components: {
