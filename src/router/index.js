@@ -16,13 +16,13 @@ const router = new Router({
         {
             path: "/:page?",
             name: "Posts",
-            component: Home
+            component: Home,
         },
         {
             // wordpressのパーマリンク設定に依存する
             path: "/:year/:month/:day/:postSlug",
             name: "Post",
-            component: Post
+            component: Post,
         },
 		{
 			path: "/category/:category/:page?",

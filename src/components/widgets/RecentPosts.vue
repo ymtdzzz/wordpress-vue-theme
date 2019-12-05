@@ -58,4 +58,10 @@
 </script>
 
 <style lang="scss" scoped>
+  .recent-posts {
+    width: 70%;
+    max-width: 1000px;
+    margin: 20px auto;
+  }
+
 </style>

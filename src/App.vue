@@ -1,6 +1,7 @@
 <template>
     <div>
         <app-header/>
+        <breadcrumb/>
         <div>
             <transition name="slide-fade">
                 <router-view/>
@@ -13,6 +14,7 @@
 <script>
   import Header from './components/partials/Header'
   import Footer from './components/partials/Footer'
+  import Breadcrumb from './components/partials/Breadcrumb'
 
     export default {
         data() {
@@ -22,7 +24,8 @@
         },
         components: {
             appHeader: Header,
-            appFooter: Footer
+            appFooter: Footer,
+            Breadcrumb
         },
         methods: {
             beforeLeave(element) {

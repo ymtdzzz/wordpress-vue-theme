@@ -1,5 +1,6 @@
 <template>
     <div class="main-container">
+      <h1 class="category-header">カテゴリ検索：{{ $route.params.category }}</h1>
       <transition name="slide-fade" mode="out-in">
         <recent-posts v-if=categoryLoaded :limit="limit" :category_id="categoryId" :page="page"/>
         <loader v-else/>
@@ -49,3 +50,12 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+  .category-header {
+    font-size: 2.2rem;
+    width: 70%;
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+</style>
