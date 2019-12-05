@@ -28,7 +28,7 @@
           })
       },
       mounted() {
-          this.$store.dispatch('getMenuBySlug', { slug: Constants.LOCATION_SLUG_HEADER_2 })
+          this.$store.dispatch('getMenuBySlug', { slug: Constants.LOCATION_SLUG_HEADER_2, type: 2 })
       }
   }
 </script>

@@ -7,6 +7,7 @@ import Home from '../components/Home.vue'
 import Post from '../components/Post'
 import Category from '../components/Category'
 // import Page from "../components/Page/Page.vue"
+import Page from "../components/Page"
 import NotFound from '../components/NotFound'
 
 Vue.use(Router);
@@ -36,12 +37,12 @@ const router = new Router({
         {
             path: "*",
             redirect: "/error/404"
+        },
+        {
+            path: "/:pageSlug",
+            name: "Page",
+            component: Page
         }
-        // {
-        //     path: "/:pageSlug",
-        //     name: "Page",
-        //     component: Page
-        // }
     ],
 	scrollBehavior (to, from, savedPosition) {
 		return { x: 0, y: 0 }

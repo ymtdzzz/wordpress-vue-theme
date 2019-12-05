@@ -1,9 +1,9 @@
 <template>
   <div class="breadcrumb-container">
     <ul v-if="breadCrumbs">
-      <li v-for="breadCrumb in breadCrumbs" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+      <li v-for="(breadCrumb, index) in breadCrumbs" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
         <router-link :to="{ path: breadCrumb.to }" itemprop="url">
-          <span class="bread-link" itemprop="title">{{ breadCrumb.text }}</span><span class="bread-space">></span>
+          <span class="bread-link" itemprop="title">{{ breadCrumb.text }}</span><span v-if="!(index === breadCrumbs.length - 1)" class="bread-space">></span>
         </router-link>
       </li>
     </ul>
@@ -25,7 +25,7 @@
 <style lang="scss" scoped>
   .breadcrumb-container {
     margin-left: 10%;
-    padding-left: 10px;
+    padding-left: 5px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 0 0 12px 12px;
     width: auto;
