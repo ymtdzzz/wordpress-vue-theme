@@ -24,6 +24,7 @@
             </div>
             <Loader v-else/>
         </transition>
+        <comment :isOpen="true" :comments="getComments" />
     </div>
 </template>
 
@@ -31,6 +32,7 @@
     import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
+    import Comment from './partials/Comment'
 
     export default {
         computed: {
@@ -50,6 +52,9 @@
                     to: `/category/${this.category_name}`,
                     text: this.category_name
                 }]
+            },
+            getComments: function () {
+                return _.get(this.postToShow, '_embedded.replies.0')
             }
         },
         mounted() {
@@ -68,7 +73,8 @@
             this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
         },
         components: {
-            Loader
+            Loader,
+            Comment
         }
     }
 </script>
