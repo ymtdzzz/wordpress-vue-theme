@@ -11,6 +11,14 @@
   import Constants from "../Constants"
 
   export default {
+    computed: {
+      breadCrumbs: function () {
+          return [{
+              to: '/',
+              text: 'HOME'
+          }]
+      }
+    },
     data() {
       return {
         limit: Constants.POSTS_LIST_LIMIT,
@@ -20,6 +28,9 @@
     components: {
       RecentPosts,
       PickupCarousel,
+    },
+    mounted() {
+        this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
     }
   }
 </script>

@@ -38,7 +38,19 @@
                 postToShow: "postToShow",
                 postLoaded: "postLoaded",
                 loadedPosts: "loadedPosts",
-            })
+            }),
+            category_name: function () {
+                return _.get(this.postToShow, '_embedded.wp:term.0.0.name')
+            },
+            breadCrumbs: function () {
+                return [{
+                    to: '/',
+                    text: 'HOME'
+                },{
+                    to: `/category/${this.category_name}`,
+                    text: this.category_name
+                }]
+            }
         },
         mounted() {
             if (this.loadedPosts.length) {
@@ -53,6 +65,7 @@
             } else {
               this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
             }
+            this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
         },
         components: {
             Loader

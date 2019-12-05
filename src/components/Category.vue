@@ -19,12 +19,21 @@
             ...mapGetters({
                 categoryId: 'categoryId',
                 categoryLoaded: 'categoryLoaded'
-            })
+            }),
+            breadCrumbs: function () {
+                return [{
+                    to: '/',
+                    text: 'HOME'
+                },{
+                    to: '/',
+                    text: 'カテゴリ検索'
+                }]
+            }
         },
         data() {
             return {
                 page: this.$route.params.page ? this.$route.params.page : '1',
-                limit: Constants.POSTS_LIST_LIMIT
+                limit: Constants.POSTS_LIST_LIMIT,
             }
         },
         components:{
@@ -33,10 +42,12 @@
         },
         mounted() {
             this.$store.dispatch('getCategoryIdBySlug', { slug: this.$route.params.category })
+            this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
         },
         watch: {
             '$route.params.category' (to, from) {
-                this.$store.dispatch('getCategoryIdBySlug', { slug: this.$route.params.category })
+                this.$store.dispatch('getCategoryIdBySlug', { slug: to })
+                this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
             },
             categoryId (to, from) {
                 this.$store.dispatch("getPosts", {
