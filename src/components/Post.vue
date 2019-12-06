@@ -24,7 +24,7 @@
             </div>
             <Loader v-else/>
         </transition>
-        <comment :isOpen="true" :comments="getComments" />
+        <comment :isOpen="true" :comments="getComments" :postId="postToShow.id" :commentStatus="postToShow.comment_status" />
     </div>
 </template>
 

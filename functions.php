@@ -45,6 +45,12 @@ function ag_filter_post_json($response, $post, $context) {
 	return $response;
 }
 
+// 第三者のコメント投稿を許可する
+function filter_rest_allow_anonymous_comments() {
+	return true;
+}
+add_filter('rest_allow_anonymous_comments', 'filter_rest_allow_anonymous_comments');
+
 add_theme_support('post-thumbnails');
 
 add_filter( 'rest_prepare_post', 'ag_filter_post_json', 10, 3 );

@@ -9,17 +9,106 @@
             </div>
             <div class="comment-content" v-html="comment.content.rendered"></div>
         </div>
+        <div v-if="isCommentable" class="post-comment-container">
+          <input type="text" v-model="name" placeholder="（必須）NAME">
+          <p class="error" v-if="errors.name.required">名前は必須項目です。</p>
+          <input type="email" v-model="email" placeholder="（必須）EMAIL(非公開)">
+          <p class="error" v-if="errors.email.required">メールアドレスは必須項目です。</p>
+          <input type="url" v-model="site" placeholder="（任意）ホームページURL">
+          <textarea v-model="content" placeholder="（必須）コメント本文"></textarea>
+          <p class="error" v-if="errors.content.required">コメント内容は必須項目です。</p>
+          <button @click="postComment">送信</button>
+        </div>
+        <div v-else class="post-comment-container">コメントは締め切られました。</div>
     </div>
 </template>
 
 <script>
     import _ from 'lodash'
+    import Constants from "../../Constants"
+    import axios from 'axios'
 
     export default {
+        data() {
+            return {
+                name: '',
+                email: '',
+                site: '',
+                content: '',
+                defaultErrors: {
+                    name: {
+                        required: false
+                    },
+                    email: {
+                        required: false
+                    },
+                    content: {
+                        required: false
+                    }
+                },
+                errors: {
+                    name: {
+                        required: false
+                    },
+                    email: {
+                        required: false
+                    },
+                    content: {
+                        required: false
+                    }
+                }
+            }
+        },
         props: [
             'isOpen',
-            'comments'
-        ]
+            'comments',
+            'postId',
+            'commentStatus'
+        ],
+        computed: {
+            isCommentable: function () {
+                return this.commentStatus === 'open'
+            }
+        },
+        methods: {
+            postComment: function () {
+                if (this.checkForm()) {
+                    axios.post(Constants.DEV_DOMAIN + '/wp-json/wp/v2/comments', {
+                        author_name: this.name,
+                        author_email: this.email,
+                        content: this.content,
+                        post: this.postId
+                    }).then(response => {
+                        alert('ok')
+                    }).catch(e => {
+                        alert('ng' + e)
+                    })
+                }
+            },
+            checkForm: function () {
+                let hasError = false
+                this.errors = this.defaultErrors
+                if (!this.name) {
+                    this.errors.name.required = true
+                    hasError = true
+                } else {
+                    this.errors.name.required = false
+                }
+                if (!this.email) {
+                    this.errors.email.required = true
+                    hasError = true
+                } else {
+                    this.errors.email.required = false
+                }
+                if (!this.content) {
+                    this.errors.content.required = true
+                    hasError = true
+                } else {
+                    this.errors.content.required = false
+                }
+                return !hasError
+            }
+        }
     }
 </script>
 
@@ -54,6 +143,49 @@
           border: 1px solid black;
           border-radius: 7px;
           padding: 15px;
+        }
+
+        .post-comment-container {
+          padding: 20px 20px 20px 5px;
+          margin-top: 30px;
+
+          input {
+            display: block;
+            padding: 8px;
+            border: none;
+            min-width: 400px;
+            border-bottom: 1px solid #aaa;
+          }
+
+          textarea {
+            margin: 10px 0;
+            width: 500px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            padding: 15px;
+            display: block;
+            min-height: 150px;
+          }
+
+          button {
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 6px 12px 6px 12px;
+            margin: 5px 0 0 5px;
+            font-size: 0.9rem;
+            transition: background-color .3s;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #444;
+            }
+          }
+
+          .error {
+            padding: 7px 0;
+            color: red;
+          }
         }
     }
 </style>
