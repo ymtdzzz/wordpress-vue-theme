@@ -9,7 +9,8 @@
             </div>
             <div class="comment-content" v-html="comment.content.rendered"></div>
         </div>
-        <div v-if="isCommentable" class="post-comment-container">
+      <transition name="slide-fade" mode="out-in">
+        <div v-if="isCommentable && !isPosting" class="post-comment-container">
           <input type="text" v-model="name" placeholder="（必須）NAME">
           <p class="error" v-if="errors.name.required">名前は必須項目です。</p>
           <input type="email" v-model="email" placeholder="（必須）EMAIL(非公開)">
@@ -19,7 +20,9 @@
           <p class="error" v-if="errors.content.required">コメント内容は必須項目です。</p>
           <button @click="postComment">送信</button>
         </div>
-        <div v-else class="post-comment-container">コメントは締め切られました。</div>
+        <div v-if="!isCommentable" class="post-comment-container">コメントは締め切られました。</div>
+        <loader v-if="isPosting" />
+      </transition>
     </div>
 </template>
 
@@ -27,6 +30,8 @@
     import _ from 'lodash'
     import Constants from "../../Constants"
     import axios from 'axios'
+    import Loader from './Loader'
+    import router from "../../router"
 
     export default {
         data() {
@@ -35,6 +40,7 @@
                 email: '',
                 site: '',
                 content: '',
+                isPosting: false,
                 defaultErrors: {
                     name: {
                         required: false
@@ -70,18 +76,27 @@
                 return this.commentStatus === 'open'
             }
         },
+        components: {
+            Loader
+        },
         methods: {
             postComment: function () {
                 if (this.checkForm()) {
+                    this.isPosting = true
                     axios.post(Constants.DEV_DOMAIN + '/wp-json/wp/v2/comments', {
                         author_name: this.name,
                         author_email: this.email,
                         content: this.content,
                         post: this.postId
                     }).then(response => {
-                        alert('ok')
+                        router.go(0)
                     }).catch(e => {
                         alert('ng' + e)
+                    }).finally(() => {
+                        this.isPosting = false
+                        this.name = ''
+                        this.email = ''
+                        this.content = ''
                     })
                 }
             },
