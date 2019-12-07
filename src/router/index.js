@@ -6,9 +6,9 @@ import App from '../App'
 import Home from '../components/Home.vue'
 import Post from '../components/Post'
 import Category from '../components/Category'
-// import Page from "../components/Page/Page.vue"
 import Page from "../components/Page"
 import NotFound from '../components/NotFound'
+import Search from "../components/Search"
 
 Vue.use(Router);
 
@@ -30,6 +30,11 @@ const router = new Router({
 			name: "Category",
 			component: Category
 		},
+        {
+            path: "/search/:search_keyword/:page?",
+            name: "Search",
+            component: Search
+        },
         {
             path: "/error/404",
             component: NotFound

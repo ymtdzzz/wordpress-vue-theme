@@ -2,7 +2,7 @@
     <div class="main-container">
       <h1 class="category-header">カテゴリ検索：{{ $route.params.category }}</h1>
       <transition name="slide-fade" mode="out-in">
-        <recent-posts v-if=categoryLoaded :limit="limit" :category_id="categoryId" :page="page"/>
+        <recent-posts v-if=categoryLoaded :limit="limit" :category_id="categoryId" />
         <loader v-else/>
       </transition>
     </div>
@@ -32,7 +32,6 @@
         },
         data() {
             return {
-                page: this.$route.params.page ? this.$route.params.page : '1',
                 limit: Constants.POSTS_LIST_LIMIT,
             }
         },

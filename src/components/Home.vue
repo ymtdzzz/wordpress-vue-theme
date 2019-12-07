@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <pickup-carousel v-if="isHome" />
-    <recent-posts :limit="limit" :page="page"/>
+    <recent-posts :limit="limit"/>
   </div>
 </template>
 
@@ -27,7 +27,6 @@
     data() {
       return {
         limit: Constants.POSTS_LIST_LIMIT,
-        page: this.$route.params.page ? this.$route.params.page : '1',
         isHome: false
       }
     },

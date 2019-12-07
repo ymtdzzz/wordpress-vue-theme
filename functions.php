@@ -53,4 +53,35 @@ add_filter('rest_allow_anonymous_comments', 'filter_rest_allow_anonymous_comment
 
 add_theme_support('post-thumbnails');
 
+// user情報の追加
+function my_user_meta($wb) {
+	$wb['twitter'] = 'twitter';
+	$wb['facebook'] = 'facebook';
+	$wb['github'] = 'github';
+	$wb['instagram'] = 'instagram';
+	return $wb;
+}
+add_filter('user_contactmethods', 'my_user_meta', 10, 1);
+
+function adding_user_meta_rest() {
+	register_rest_field(
+		'user',
+		'user_meta',
+		array(
+			'get_callback'      => 'facebook_get_user_field',
+			'update_callback'   => null,
+			'schema'            => null,
+		)
+	);
+}
+function facebook_get_user_field( $user, $field_name, $request ) {
+	return array(
+		'twitter' => get_the_author_meta('twitter',$user['id']),
+		'facebook' => get_the_author_meta('facebook',$user['id']),
+		'github' => get_the_author_meta('github',$user['id']),
+		'instagram' => get_the_author_meta('instagram',$user['id']),
+	);
+}
+add_action( 'rest_api_init', 'adding_user_meta_rest' );
+
 add_filter( 'rest_prepare_post', 'ag_filter_post_json', 10, 3 );

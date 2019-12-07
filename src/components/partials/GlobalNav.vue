@@ -8,8 +8,8 @@
             </ul>
             <div class="search-container">
                 <div class="search-form">
-                    <input class="search-input" type="text" placeholder="Search">
-                    <button class="search-button"><v-fa icon="search"/></button>
+                    <input class="search-input" type="text" placeholder="Search" v-model="search_keyword">
+                    <button class="search-button" @click="execSearch"><v-fa icon="search"/></button>
                 </div>
             </div>
         </div>
@@ -18,7 +18,8 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import Constants from "../../Constants";
+  import Constants from "../../Constants"
+  import router from "../../router"
 
   export default {
       computed: {
@@ -26,6 +27,16 @@
               menus: "menus",
               menuLoaded: "menuLoaded"
           })
+      },
+      data() {
+          return {
+              search_keyword: '',
+          }
+      },
+      methods: {
+          execSearch: function () {
+              router.push({ name: 'Search', params: { search_keyword: this.search_keyword } })
+          }
       },
       mounted() {
           this.$store.dispatch('getMenuBySlug', { slug: Constants.LOCATION_SLUG_HEADER_2, type: 2 })

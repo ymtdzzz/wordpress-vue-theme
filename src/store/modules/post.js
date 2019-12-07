@@ -1,6 +1,7 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
 import _ from 'lodash'
+import router from "../../router";
 
 const PostsRepository = RepositoryFactory.get('posts')
 const TagsRepository = RepositoryFactory.get('tags')

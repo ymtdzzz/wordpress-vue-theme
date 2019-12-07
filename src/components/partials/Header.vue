@@ -1,9 +1,9 @@
 <template>
     <header>
         <div class="header-container">
-            <div class="header-left-container">
-                ソーシャルボタンとか
-            </div>
+<!--            <div class="header-left-container">-->
+<!--                ソーシャルボタンとか-->
+<!--            </div>-->
             <p class="site-title">Blog Title</p>
             <div class="header-right-container">
                 <ul class="page-nav">

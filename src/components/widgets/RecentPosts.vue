@@ -8,7 +8,7 @@
             </div>
             <Loader v-else/>
         </transition>
-            <pager :total_pages="totalPages" :current_page="currentPage"/>
+            <pager />
     </div>
 </template>
 
@@ -23,11 +23,15 @@
     export default {
         props: [
             'limit',
-            'page',
             'category_id',
             'tag_id',
             'search_keyword',
         ],
+        data() {
+            return {
+                page: this.$route.params.page ? this.$route.params.page : '1',
+            }
+        },
         computed: {
             ...mapGetters({
                 recentPosts: "recentPosts",
@@ -53,6 +57,17 @@
             Loader,
             PostCard,
             Pager,
+        },
+        watch: {
+            '$route' (to, from) {
+                this.$store.dispatch("getPosts", {
+                    limit: this.limit,
+                    page: to.params.page,
+                    category_id: this.category_id,
+                    tag_id: this.tag_id,
+                    search_keyword: this.search_keyword
+                })
+            }
         }
     }
 </script>
