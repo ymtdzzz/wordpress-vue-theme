@@ -35,11 +35,11 @@ const actions = {
     //         commit(types.POSTS_LOADED, true)
     //     })
     // },
-    getTagById({ commit }, { id }) {
+    getTagBySlug({ commit }, { slug }) {
         commit(types.TAGS_LOADED, false)
 
 
-            TagsRepository.getTagById(id, tag => {
+            TagsRepository.getTagBySlug(slug, tag => {
             if (_.isEmpty(tag)) {
                 console.log('empty')
                 //  TODO: 404ページに移動

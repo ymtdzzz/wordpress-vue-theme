@@ -5,10 +5,11 @@
                 <div v-for="post in recentPosts(limit)" :key="post.id">
                     <post-card :post="post" />
                 </div>
+                <div v-if="!isResult" class="no-result">検索結果が0件でした。</div>
             </div>
             <Loader v-else/>
         </transition>
-            <pager />
+            <pager v-if="recentPostsLoaded && isResult"/>
     </div>
 </template>
 
@@ -38,7 +39,10 @@
                 recentPostsLoaded: "recentPostsLoaded",
                 totalPages: "totalPages",
                 currentPage: "currentPage",
-            })
+            }),
+            isResult: function () {
+                return this.recentPosts(this.limit).length !== 0
+            }
         },
         mounted() {
             if (!(this.currentPage === this.page)) {
@@ -73,10 +77,16 @@
 </script>
 
 <style lang="scss" scoped>
-  .recent-posts {
+    .recent-posts {
     width: 70%;
     max-width: 1000px;
     margin: 20px auto;
-  }
+    }
+
+    .no-result {
+        height: 130px;
+        text-align: center;
+        padding-top: 80px;
+    }
 
 </style>

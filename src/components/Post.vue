@@ -11,7 +11,11 @@
                         {{ postToShow.title.rendered }}
                     </div>
                     <div class="article-tags">
-                        <a href="#" v-for="tag_name in postToShow.tag_names" class="tag">#{{ tag_name }}</a>
+                        <span v-for="(tag_name, tag_slug) in postToShow.tag_names">
+                            <router-link class="tag" :to="{ name: 'Tag', params: { tag: tag_slug } }">
+                                #{{ tag_name }}
+                            </router-link>
+                        </span>
                     </div>
                 </div>
             </transition>

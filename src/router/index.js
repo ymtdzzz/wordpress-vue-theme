@@ -9,6 +9,7 @@ import Category from '../components/Category'
 import Page from "../components/Page"
 import NotFound from '../components/NotFound'
 import Search from "../components/Search"
+import Tag from "../components/Tag"
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ const router = new Router({
 			name: "Category",
 			component: Category
 		},
+        {
+            path: "/tag/:tag/:page?",
+            name: "Tag",
+            component: Tag
+        },
         {
             path: "/search/:search_keyword/:page?",
             name: "Search",

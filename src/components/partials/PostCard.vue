@@ -8,6 +8,9 @@
                 </div>
                 <div class="post-card-title">{{ post.title.rendered }}</div>
                 <div class="post-card-sub">{{ post.date | moment }}</div>
+                <div class="post-card-category">
+                    <a v-if="category_name" href="#"><v-fa icon="folder"/>  {{ category_name }}</a>
+                </div>
             </div>
             <div class="post-card-feature">
                 {{ post.content.rendered | striphtml }}
@@ -25,6 +28,11 @@
 <script>
     export default {
         props: ['post'],
+        computed: {
+            category_name: function () {
+                return _.get(this.post, '_embedded.wp:term.0.0.name', false)
+            }
+        }
     }
 </script>
 
@@ -137,17 +145,27 @@
         }
     }
 
+    .post-card-category {
+        margin: 5px;
+
+        a {
+            color: #777;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    }
+
     .post-card-tags {
 
         a.tag {
             display: inline-block;
             padding: 3px 6px;
             margin-right: 3px;
-            border: 1px solid black;
             position: relative;
             z-index: 3;
             text-decoration: none;
-            color: black;
+            color: #777;
+            font-size: 0.9rem;
         }
     }
 

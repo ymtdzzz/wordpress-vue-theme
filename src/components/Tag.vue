@@ -1,8 +1,9 @@
 <template>
     <div class="main-container">
-        <h1 class="category-header">単語検索：{{ $route.params.search_keyword }}</h1>
+        <h1 class="category-header">タグ検索：{{ $route.params.tag }}</h1>
         <transition name="slide-fade" mode="out-in">
-            <recent-posts :limit="limit" :search_keyword="$route.params.search_keyword"/>
+            <recent-posts v-if="TagLoaded" :limit="limit" :tag_id="tag[0].id" />
+            <loader v-else/>
         </transition>
     </div>
 </template>
@@ -16,6 +17,8 @@
     export default {
         computed: {
             ...mapGetters({
+                TagLoaded: 'TagLoaded',
+                tag: 'tag'
             }),
             breadCrumbs: function () {
                 return [{
@@ -23,14 +26,13 @@
                     text: 'HOME'
                 },{
                     to: '/',
-                    text: '単語検索'
+                    text: 'タグ検索'
                 }]
             }
         },
         data() {
             return {
                 limit: Constants.POSTS_LIST_LIMIT,
-                search_keyword: this.$route.params.search_keyword,
             }
         },
         components:{
@@ -38,8 +40,9 @@
             Loader
         },
         mounted() {
+            this.$store.dispatch('getTagBySlug', { slug: this.$route.params.tag })
             this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
-        }
+        },
     }
 </script>
 

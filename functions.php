@@ -39,7 +39,7 @@ function ag_filter_post_json($response, $post, $context) {
 	$response->data['tag_names'] = [];
 
 	foreach ($tags as $tag) {
-		$response->data['tag_names'][] = $tag->name;
+		$response->data['tag_names'][$tag->slug] = $tag->name;
 	}
 
 	return $response;
