@@ -4,7 +4,7 @@
 <!--            <div class="header-left-container">-->
 <!--                ソーシャルボタンとか-->
 <!--            </div>-->
-            <p class="site-title">Blog Title</p>
+            <router-link :to="{ name: 'Posts' }" class="site-title" v-if="siteLoaded">{{ siteInfo.name }}</router-link>
             <div class="header-right-container">
                 <ul class="page-nav">
                   <li v-if="pageMenuLoaded" v-for="menu in pageMenus">
@@ -29,12 +29,15 @@
         computed: {
             ...mapGetters({
                 pageMenus: "pageMenus",
-                pageMenuLoaded: "pageMenuLoaded"
+                pageMenuLoaded: "pageMenuLoaded",
+                siteInfo: "siteInfo",
+                siteLoaded: "siteLoaded",
             })
         },
         mounted() {
             this.$store.dispatch('getMenuBySlug', { slug: Constants.LOCATION_SLUG_HEADER_1, type: 1 })
-        }
+            this.$store.dispatch('getSiteInfo')
+        },
     }
 </script>
 
@@ -53,6 +56,8 @@
         .site-title {
             font-size: 1.5rem;
             flex: 1;
+            color: white;
+            text-decoration: none;
         }
 
         .header-left-container {

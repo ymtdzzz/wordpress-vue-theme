@@ -57,6 +57,11 @@
         },
         components: {
             Loader
+        },
+        watch: {
+            '$route' (to, from) {
+                this.$store.dispatch("getPageBySlug", { slug: this.$route.params.pageSlug })
+            }
         }
     }
 </script>

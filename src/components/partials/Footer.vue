@@ -2,6 +2,7 @@
   <div>
     <div class="site-footer">
       <div class="footer-widget">
+        <footer-menu />
       </div>
       <div class="footer-widget">
       </div>
@@ -17,10 +18,12 @@
 
 <script>
   import Profile from '../widgets/Profile'
+  import FooterMenu from '../widgets/FooterMenu'
 
   export default {
     components: {
-      Profile
+      Profile,
+      FooterMenu
     }
   }
 </script>

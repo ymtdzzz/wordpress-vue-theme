@@ -36,8 +36,8 @@ const actions = {
     //     })
     // },
     getTagBySlug({ commit }, { slug }) {
+        commit(types.POSTS_LOADED, false)
         commit(types.TAGS_LOADED, false)
-
 
             TagsRepository.getTagBySlug(slug, tag => {
             if (_.isEmpty(tag)) {

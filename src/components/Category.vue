@@ -1,8 +1,8 @@
 <template>
     <div class="main-container">
-      <h1 class="category-header">カテゴリ検索：{{ $route.params.category }}</h1>
+        <h1 class="category-header">カテゴリ検索：<span v-if="categoryLoaded">{{ category[0].name }}</span></h1>
       <transition name="slide-fade" mode="out-in">
-        <recent-posts v-if=categoryLoaded :limit="limit" :category_id="categoryId" />
+        <recent-posts v-if="categoryLoaded" :limit="limit" :category_id="category[0].id" />
         <loader v-else/>
       </transition>
     </div>
@@ -17,7 +17,7 @@
     export default {
         computed: {
             ...mapGetters({
-                categoryId: 'categoryId',
+                category: 'category',
                 categoryLoaded: 'categoryLoaded'
             }),
             breadCrumbs: function () {
@@ -40,12 +40,12 @@
             Loader
         },
         mounted() {
-            this.$store.dispatch('getCategoryIdBySlug', { slug: this.$route.params.category })
+            this.$store.dispatch('getCategoryBySlug', { slug: this.$route.params.category })
             this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
         },
         watch: {
             '$route.params.category' (to, from) {
-                this.$store.dispatch('getCategoryIdBySlug', { slug: to })
+                this.$store.dispatch('getCategoryBySlug', { slug: to })
                 this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
             },
             categoryId (to, from) {

@@ -4,3 +4,213 @@
 @import "mixins";
 @import "transitions";
 @import "article";
+
+
+// Footer-widget
+.footer-widget-container {
+  text-align: center;
+
+  .footer-widget-header {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 5px 0;
+    color: white;
+  }
+
+  .profile-icon {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .profile-name {
+    padding: 12px 0;
+    font-size: 1.2rem;
+  }
+
+  .profile-description {
+    white-space: pre-line;
+  }
+
+  .links {
+    font-size: 1.4rem;
+    margin: 10px 0;
+
+    li {
+      display: inline-block;
+      list-style: none;
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        color: white;
+        transition: color .2s;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .menu {
+    font-size: 1.1rem;
+
+    li {
+      margin-top: 15px;
+
+      a {
+        color: #ccc;
+        text-decoration: underline;
+        transition: color .2s;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    .child-menu {
+      font-size: 1.0rem;
+
+      li {
+        a {
+          text-decoration: none;
+        }
+
+        &:last-child {
+          margin-bottom: 20px;
+
+        }
+      }
+    }
+  }
+}
+
+// コメント欄
+.comments-container {
+  width: 70%;
+  margin: 20px auto;
+  padding-bottom: 70px;
+
+  .comments-header {
+    font-size: 2.2rem;
+  }
+
+  .comment-container {
+    margin-top: 20px;
+
+    .comment-header {
+      padding: 5px 10px;
+
+      .author-name {
+        font-size: 1.4rem;
+      }
+
+      .comment-date {
+        color: #555;
+      }
+    }
+  }
+
+  .comment-content {
+    margin-top: 12px;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 15px;
+  }
+
+  .post-comment-container {
+    padding: 20px 20px 20px 5px;
+    margin-top: 30px;
+
+    input {
+      display: block;
+      padding: 8px;
+      border: none;
+      min-width: 400px;
+      border-bottom: 1px solid #aaa;
+    }
+
+    textarea {
+      margin: 10px 0;
+      width: 500px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      padding: 15px;
+      display: block;
+      min-height: 150px;
+    }
+
+    button {
+      border: none;
+      background-color: black;
+      color: white;
+      padding: 6px 12px 6px 12px;
+      margin: 5px 0 0 5px;
+      font-size: 0.9rem;
+      transition: background-color .3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #444;
+      }
+    }
+
+    .error {
+      padding: 7px 0;
+      color: red;
+    }
+  }
+}
+
+// 関連記事
+.related-posts-container {
+  width: 70%;
+  margin: 20px auto;
+  padding-bottom: 70px;
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .related-posts-main {
+    margin-top: 30px;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .related-post  {
+
+      li {
+        display: block;
+        border-bottom: 1px solid #aaa;
+
+        &:last-child {
+          border: none;
+        }
+
+        a {
+          position: relative;
+          padding: 10px 0 10px 20px;
+          color: #777;
+          transition: color, left .2s;
+          display: block;
+          left: 0;
+          height: 100%;
+
+          &:hover {
+            color: black;
+            left: 5px;
+          }
+        }
+      }
+    }
+  }
+}

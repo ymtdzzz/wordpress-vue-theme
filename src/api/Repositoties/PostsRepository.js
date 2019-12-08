@@ -1,7 +1,10 @@
 import Repository from "../Repository"
+import { related_http } from "../Repository"
 import _ from 'lodash'
+import Constants from "../../Constants";
 
 const resource = "/posts?_embed"
+const related_resource =  Constants.API_RELATED_PATH + "posts/"
 export default {
 	getPosts(limit = 5, page = 1, category_id = '', tag_id = '', search_keyword = '', callback) {
 		return Repository.get(
@@ -23,6 +26,17 @@ export default {
 		}
 		return Repository.get(
 			`${resource}&slug=${slug}`
+		)
+		.then(response => {
+			callback(response.data)
+		})
+		.catch(e => {
+			callback(e)
+		})
+	},
+	getRelatedPostsById(id, callback) {
+		return related_http.get(
+			`${related_resource}${id}`
 		)
 		.then(response => {
 			callback(response.data)

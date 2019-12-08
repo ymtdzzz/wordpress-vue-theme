@@ -31,6 +31,7 @@ add_action( 'after_setup_theme', 'register_menu' );
 function register_menu() {
 	register_nav_menu( 'header_menu_1', __( 'Header Menu 1', 'theme-slug' ) );
 	register_nav_menu( 'header_menu_2', __( 'Header Menu 2', 'theme-slug' ) );
+	register_nav_menu( 'footer_menu_1', __( 'Footer Menu 1', 'theme-slug' ) );
 }
 
 // 投稿を取得する再、タグ名称も取得する
@@ -74,6 +75,28 @@ function adding_user_meta_rest() {
 		)
 	);
 }
+// サイト情報取得APIエンドポイント
+function adding_site_info_rest() {
+	register_rest_route(
+		'wp/v2',
+		'/siteinfo',
+		array(
+			'methods' => WP_REST_Server::READABLE,
+			'callback' => 'fetch_siteinfo'
+		)
+	);
+}
+function fetch_siteinfo(){
+	$data = ['name'=>get_bloginfo('name'), 'desc'=>get_bloginfo('description')];
+
+	$response = new WP_REST_Response($data);
+	$response->set_status(200);
+	$domain = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"];
+	$response->header( 'Location', $domain );
+	return $response;
+}
+add_action('rest_api_init', 'adding_site_info_rest');
+
 function facebook_get_user_field( $user, $field_name, $request ) {
 	return array(
 		'twitter' => get_the_author_meta('twitter',$user['id']),
@@ -83,5 +106,8 @@ function facebook_get_user_field( $user, $field_name, $request ) {
 	);
 }
 add_action( 'rest_api_init', 'adding_user_meta_rest' );
+
+// 関連記事取得API
+add_filter( 'related_posts_by_taxonomy_wp_rest_api', '__return_true' );
 
 add_filter( 'rest_prepare_post', 'ag_filter_post_json', 10, 3 );

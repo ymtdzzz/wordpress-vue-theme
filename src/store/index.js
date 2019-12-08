@@ -10,6 +10,7 @@ import menu from './modules/menu'
 import category from "./modules/category"
 import common from './modules/common'
 import page from './modules/page'
+import site from './modules/site'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ export default new Vuex.Store({
     menu,
     category,
     common,
-	  page,
+    page,
+    site,
   },
   strict: debug,
   plugins: [createPersistedState()]

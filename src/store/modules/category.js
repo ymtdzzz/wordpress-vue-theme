@@ -4,28 +4,29 @@ import CategoriesRepository from "../../api/Repositoties/CategoriesRepository"
 
 // initial state
 const state = {
-    category_id: 0,
+    category: {},
     loaded: false
 }
 
 // getters
 const getters = {
-    categoryId: state => state.category_id,
+    category: state => state.category,
 
     categoryLoaded: state => state.loaded
 }
 
 // actions
 const actions = {
-    getCategoryIdBySlug({ commit }, { slug }) {
+    getCategoryBySlug({ commit }, { slug }) {
+        commit(types.POSTS_LOADED, false)
         commit(types.CATEGORY_LOADED, false)
 
-        CategoriesRepository.getCategoryIdBySlug(slug, category_id => {
-            if (_.isNil(category_id)) {
+        CategoriesRepository.getCategoryBySlug(slug, category => {
+            if (_.isNil(category)) {
                 console.log('nil')
                 //  TODO: 404ページに移動
             } else {
-                commit(types.STORE_FETCHED_CATEGORY_ID, category_id)
+                commit(types.STORE_FETCHED_CATEGORY, category)
             }
             commit(types.CATEGORY_LOADED, true)
         })
@@ -34,8 +35,8 @@ const actions = {
 
 // mutations
 const mutations = {
-    [types.STORE_FETCHED_CATEGORY_ID](state, category_id) {
-        state.category_id = category_id
+    [types.STORE_FETCHED_CATEGORY](state, category) {
+        state.category = category
     },
 
     [types.CATEGORY_LOADED](state, val) {

@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-        <h1 class="category-header">タグ検索：{{ $route.params.tag }}</h1>
+        <h1 class="category-header">タグ検索：<span v-if="TagLoaded">{{ tag[0].name }}</span></h1>
         <transition name="slide-fade" mode="out-in">
             <recent-posts v-if="TagLoaded" :limit="limit" :tag_id="tag[0].id" />
             <loader v-else/>

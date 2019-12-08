@@ -1,6 +1,5 @@
 <template>
     <div class="post">
-
         <div class="article-header-container">
             <transition name="slide-fade" mode="out-in">
                 <div class="article-header-image" v-if="postLoaded" :style="{ backgroundImage: 'url(' + postToShow.thumbnail_url + ')' }">
@@ -28,6 +27,7 @@
             </div>
             <Loader v-else/>
         </transition>
+        <related-posts v-if="postLoaded" :post_id="postToShow.id"/>
         <comment :isOpen="true" :comments="getComments" :postId="postToShow.id" :commentStatus="postToShow.comment_status" />
     </div>
 </template>
@@ -37,6 +37,7 @@
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
     import Comment from './partials/Comment'
+    import RelatedPosts from "./widgets/RelatedPosts"
 
     export default {
         computed: {
@@ -78,7 +79,8 @@
         },
         components: {
             Loader,
-            Comment
+            Comment,
+            RelatedPosts
         }
     }
 </script>
@@ -126,7 +128,7 @@
                 color: #999;
                 text-decoration: none;
                 transition: color 0.25s ease;
-                line-height: 3.5;
+                line-height: 1.0;
 
                 &:hover {
                     color: white;

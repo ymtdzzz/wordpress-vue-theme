@@ -3,7 +3,7 @@
         <div class="global-nav">
             <ul class="nav">
                 <li v-if="menuLoaded" v-for="menu in menus">
-                  <router-link :to="{ name: 'Category', params: { category: menu.title } }">{{ menu.title }}</router-link>
+                  <router-link :to="{ name: 'Category', params: { category: urlToSlug(menu.url) } }">{{ menu.title }}</router-link>
                 </li>
             </ul>
             <div class="search-container">
@@ -36,6 +36,10 @@
       methods: {
           execSearch: function () {
               router.push({ name: 'Search', params: { search_keyword: this.search_keyword } })
+          },
+          urlToSlug: function (url) {
+              const path = url.split('/')
+              return path[path.length - 2]
           }
       },
       mounted() {

@@ -3,6 +3,7 @@ import TagsRepository from "./Repositoties/TagsRepository"
 import UsersRepository from "./Repositoties/UsersRepository"
 import MenusRepository from "./Repositoties/MenusRepository"
 import PagesRepository from "./Repositoties/PagesRepository"
+import SiteRepository from "./Repositoties/SiteRepository"
 
 const repositories = {
 	posts: PostsRepository,
@@ -10,6 +11,7 @@ const repositories = {
 	users: UsersRepository,
 	menus: MenusRepository,
 	pages: PagesRepository,
+	site: SiteRepository,
 }
 
 export const RepositoryFactory = {

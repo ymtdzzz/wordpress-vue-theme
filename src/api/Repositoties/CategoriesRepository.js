@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const resource = "/categories"
 export default {
-    getCategoryIdBySlug(slug, callback) {
+    getCategoryBySlug(slug, callback) {
         if (_.isEmpty(slug)) {
             // 全件取得防止
             return {}
@@ -12,7 +12,7 @@ export default {
             `${resource}?slug=${slug}`
         )
             .then(response => {
-                callback(_.get(response, 'data.0.id'))
+                callback(response.data)
             })
             .catch(e => {
                 callback(e)
