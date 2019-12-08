@@ -3,7 +3,16 @@
         <Carousel :per-page="1" paginationPosition="bottom-overlay">
             <span v-if="popularLoaded">{{popularPosts}}</span>
             <Slide>
-                <div class="carousel-slide">SLIDE 1</div>
+                <div class="carousel-slide">
+                    <span class="tag">tag</span>
+                    <span class="tag">tag</span>
+                    <span class="tag">tag</span>
+                    <span class="tag">tag</span>
+                    <p class="title">記事タイトル</p>
+                    <p class="date">2019年11月22日</p>
+                    <p class="category"><v-fa icon="folder"/></p>
+                    <p class="description">記事の内容</p>
+                </div>
             </Slide>
             <Slide>
                 <div class="carousel-slide">SLIDE 2</div>

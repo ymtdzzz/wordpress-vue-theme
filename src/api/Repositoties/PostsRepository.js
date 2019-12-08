@@ -5,7 +5,7 @@ import Constants from "../../Constants";
 
 const resource = "/posts?_embed"
 const related_resource =  Constants.API_RELATED_PATH + "posts/"
-const popular_resource = Constants.API_POPULAR_PATH + "popular-posts?limit=3"
+const popular_resource = Constants.API_POPULAR_PATH + "popular-posts?limit=3&_embed"
 export default {
 	getPosts(limit = 5, page = 1, category_id = '', tag_id = '', search_keyword = '', callback) {
 		return Repository.get(

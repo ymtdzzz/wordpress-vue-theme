@@ -134,12 +134,18 @@ const actions = {
         console.log('nil')
         //  TODO: 404ページに移動
       } else {
+        // サムネ画像取得
+        // popular_posts.map((post, i) => {
+        //   popular_posts[i] = createPostThumbnail(post)
+        // })
+
         // 日付からスラグ生成
-        popular_posts.forEach(post => {
+        popular_posts.forEach((post, index) => {
           const year = moment(post.date).format('YYYY')
           const month = moment(post.date).format('MM')
           const day = moment(post.date).format('DD')
           post['slug'] = `/${year}/${month}/${day}/${post.slug}`
+          post['thumbnail_url'] = _.get(post, '_embedded.wp:featuredmedia.0.source_url', '')
         })
         commit(types.STORE_FETCHED_POPULAR_POSTS, popular_posts)
       }
