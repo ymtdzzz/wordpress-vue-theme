@@ -1,10 +1,11 @@
-import Repository from "../Repository"
+import Repository, {popular_http} from "../Repository"
 import { related_http } from "../Repository"
 import _ from 'lodash'
 import Constants from "../../Constants";
 
 const resource = "/posts?_embed"
 const related_resource =  Constants.API_RELATED_PATH + "posts/"
+const popular_resource = Constants.API_POPULAR_PATH + "popular-posts?limit=3"
 export default {
 	getPosts(limit = 5, page = 1, category_id = '', tag_id = '', search_keyword = '', callback) {
 		return Repository.get(
@@ -37,6 +38,17 @@ export default {
 	getRelatedPostsById(id, callback) {
 		return related_http.get(
 			`${related_resource}${id}`
+		)
+		.then(response => {
+			callback(response.data)
+		})
+		.catch(e => {
+			callback(e)
+		})
+	},
+	getPopularPosts(callback) {
+		return popular_http.get(
+			`${popular_resource}`
 		)
 		.then(response => {
 			callback(response.data)

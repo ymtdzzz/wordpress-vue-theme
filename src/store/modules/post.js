@@ -29,7 +29,10 @@ const state = {
   loaded: false,
 
   related_posts: [],
-  related_loaded: false
+  related_loaded: false,
+
+  popular_posts: [],
+  popular_loaded: false
 }
 
 // getters
@@ -55,7 +58,10 @@ const getters = {
   currentPage: state => state.current_page,
 
   relatedPosts: state => state.related_posts,
-  relatedLoaded: state => state.related_loaded
+  relatedLoaded: state => state.related_loaded,
+
+  popularPosts: state => state.popular_posts,
+  popularLoaded: state => state.popular_loaded
 }
 
 // actions
@@ -119,6 +125,26 @@ const actions = {
       }
       commit(types.RELATED_POSTS_LOADED, true)
     })
+  },
+  getPopularPosts({ commit }) {
+    commit(types.POPULAR_POSTS_LOADED, false)
+
+    PostsRepository.getPopularPosts(popular_posts => {
+      if (_.isNil(popular_posts)) {
+        console.log('nil')
+        //  TODO: 404ページに移動
+      } else {
+        // 日付からスラグ生成
+        popular_posts.forEach(post => {
+          const year = moment(post.date).format('YYYY')
+          const month = moment(post.date).format('MM')
+          const day = moment(post.date).format('DD')
+          post['slug'] = `/${year}/${month}/${day}/${post.slug}`
+        })
+        commit(types.STORE_FETCHED_POPULAR_POSTS, popular_posts)
+      }
+      commit(types.POPULAR_POSTS_LOADED, true)
+    })
   }
 }
 
@@ -150,6 +176,14 @@ const mutations = {
 
   [types.RELATED_POSTS_LOADED](state, val) {
     state.related_loaded = val
+  },
+
+  [types.STORE_FETCHED_POPULAR_POSTS](state, popular_posts) {
+    state.popular_posts = popular_posts
+  },
+
+  [types.POPULAR_POSTS_LOADED](state, val) {
+    state.popular_loaded = val
   }
 }
 
