@@ -134,11 +134,6 @@ const actions = {
         console.log('nil')
         //  TODO: 404ページに移動
       } else {
-        // サムネ画像取得
-        // popular_posts.map((post, i) => {
-        //   popular_posts[i] = createPostThumbnail(post)
-        // })
-
         // 日付からスラグ生成
         popular_posts.forEach((post, index) => {
           const year = moment(post.date).format('YYYY')
