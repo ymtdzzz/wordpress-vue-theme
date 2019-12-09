@@ -70,6 +70,8 @@
                     const slug = `/${params.year}/${params.month}/${params.day}/${params.postSlug}/`
                     if (post.slug === slug) {
                       this.$store.dispatch("setPostToShow", { postToSave: post })
+                    } else if (index === (this.loadedPosts.length - 1)) {
+                        this.$store.dispatch("getPostBySlug", { slug: this.$route.params.postSlug })
                     }
                 })
             } else {
