@@ -77,16 +77,4 @@
 </script>
 
 <style lang="scss" scoped>
-    .recent-posts {
-    width: 70%;
-    max-width: 1000px;
-    margin: 20px auto;
-    }
-
-    .no-result {
-        height: 130px;
-        text-align: center;
-        padding-top: 80px;
-    }
-
 </style>
