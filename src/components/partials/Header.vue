@@ -16,9 +16,16 @@
                         </div>
                     </div>
                     <div class="nav-title">CATEGORY</div>
-                    <div class="nav-content">
-                        カテゴリ
-                    </div>
+                    <ul v-if="footerMenuLoaded" class="nav-content">
+                        <li v-for="menu in footerMenus" @click="closeNav">
+                            <router-link :to="{ name: 'Category', params: { category: urlToSlug(menu.url) } }">{{ menu.title }}</router-link>
+                            <ul v-if="menu.child_items" class="child-menu">
+                                <li v-for="child_menu in menu.child_items" @click="closeNav">
+                                    <router-link :to="{ name: 'Category', params: { category: urlToSlug(child_menu.url) } }">　＞{{ child_menu.title }}</router-link>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
                 </div>
             </div>
@@ -66,9 +73,16 @@
             }
         },
         methods: {
-            execSearch: function () {
+            closeNav: function () {
                 this.$refs.navinput.checked = false
+            },
+            execSearch: function () {
+                this.closeNav()
                 router.push({ name: 'Search', params: { search_keyword: this.search_keyword } })
+            },
+            urlToSlug: function (url) {
+                const path = url.split('/')
+                return path[path.length - 2]
             }
         },
         mounted() {
