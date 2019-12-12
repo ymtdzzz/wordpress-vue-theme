@@ -26,6 +26,15 @@
                             </ul>
                         </li>
                     </ul>
+                    <div class="nav-title" style="margin-top: 20px;">PROFILE</div>
+                    <img class="profile-icon" :src="avatarUrl" alt="profile_icon">
+                    <p class="profile-name">{{ user.name }}</p>
+                    <div class="profile-description" v-html="user.description"></div>
+                    <ul class="links">
+                        <li v-if="isSocial('github')"><a :href="`https://github.com/${user.user_meta.github}`" target="_blank"><v-fa :icon="['fab', 'github']"/></a></li>
+                        <li v-if="isSocial('twitter')"><a href="#"><v-fa :icon="['fab', 'twitter']"/></a></li>
+                        <li v-if="isSocial('facebook')"><a href="#"><v-fa :icon="['fab', 'facebook']"/></a></li>
+                    </ul>
 
                 </div>
             </div>
@@ -65,7 +74,10 @@
                 UserLoaded: 'UserLoaded',
                 footerMenus: "footerMenus",
                 footerMenuLoaded: "footerMenuLoaded",
-            })
+            }),
+            avatarUrl: function () {
+                return _.get(this.user, 'avatar_urls.96', '')
+            }
         },
         data() {
             return {
@@ -83,6 +95,9 @@
             urlToSlug: function (url) {
                 const path = url.split('/')
                 return path[path.length - 2]
+            },
+            isSocial: function (service_name) {
+                return (_.get(this.user, 'user_meta.' + service_name, '') !== '') ? _.get(this.user, 'user_meta.' + service_name) : false
             }
         },
         mounted() {
