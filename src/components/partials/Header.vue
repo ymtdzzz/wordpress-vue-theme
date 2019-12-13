@@ -26,11 +26,11 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="nav-title" style="margin-top: 20px;">PROFILE</div>
-                    <img class="profile-icon" :src="avatarUrl" alt="profile_icon">
-                    <p class="profile-name">{{ user.name }}</p>
-                    <div class="profile-description" v-html="user.description"></div>
-                    <ul class="links">
+                    <div class="nav-title" style="margin-top: 20px; margin-bottom: 15px;">PROFILE</div>
+                    <img class="nav-profile-icon" :src="avatarUrl" alt="profile_icon">
+                    <p class="nav-profile-name">{{ user.name }}</p>
+                    <div class="nav-profile-description" v-html="user.description"></div>
+                    <ul class="nav-links">
                         <li v-if="isSocial('github')"><a :href="`https://github.com/${user.user_meta.github}`" target="_blank"><v-fa :icon="['fab', 'github']"/></a></li>
                         <li v-if="isSocial('twitter')"><a href="#"><v-fa :icon="['fab', 'twitter']"/></a></li>
                         <li v-if="isSocial('facebook')"><a href="#"><v-fa :icon="['fab', 'facebook']"/></a></li>

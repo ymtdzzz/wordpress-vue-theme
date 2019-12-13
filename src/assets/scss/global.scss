@@ -122,6 +122,7 @@ body {
       }
 
       .nav-content {
+        color: black;
 
         li {
           text-align: left;
@@ -139,6 +140,42 @@ body {
             &:hover {
               color: black;
             }
+          }
+        }
+
+      }
+
+      .nav-profile-icon {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .nav-profile-name {
+        padding: 12px 0;
+        font-size: 1.2rem;
+        color: black;
+      }
+
+      .nav-profile-description {
+        white-space: pre-line;
+        color: black;
+      }
+
+      .nav-links {
+        font-size: 1.4rem;
+        margin: 10px 0;
+
+        li {
+          display: inline-block;
+          list-style: none;
+          margin-right: 5px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          a {
+            color: black;
           }
         }
       }
@@ -938,6 +975,10 @@ body {
           display:table-cell;
           vertical-align:middle;
         }
+      }
+
+      &.page-no {
+        display: none;
       }
     }
   }
