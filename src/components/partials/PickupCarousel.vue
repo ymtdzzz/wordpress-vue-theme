@@ -1,7 +1,14 @@
 <template>
     <div class="pickup-carousel-container">
         <transition name="slide-fade" mode="out-in">
-            <Carousel v-if="popularLoaded" :per-page="1" paginationPosition="bottom-overlay">
+            <Carousel
+                    v-if="popularLoaded"
+                    :autoplay="true"
+                    :autoplayTimeout="6000"
+                    :autoplayHoverPause="true"
+                    :per-page="1"
+                    paginationPosition="bottom-overlay"
+            >
                 <Slide v-for="post in popularPosts" :key="post.id">
                     <div class="carousel-slide" :style="{ backgroundImage: 'url(' + post.thumbnail_url + ')' }">
                         <div class="article-container">
