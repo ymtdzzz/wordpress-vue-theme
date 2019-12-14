@@ -24,12 +24,14 @@ body {
   background-color: black;
   color: white;
   text-align: center;
+  transition: all .3s;
 
   .site-title {
     font-size: 1.5rem;
     flex: 1;
     color: white;
     text-decoration: none;
+    transition: font-size .3s;
   }
 
   .nav-drawer {
@@ -120,6 +122,7 @@ body {
         text-align: center;
         font-size: 1.3rem;
         margin-top: 80px;
+        margin-bottom: 20px;
         background-color: #222;
       }
 
@@ -140,7 +143,7 @@ body {
             transition: color .3s;
             display: block;
             padding: 10px 0 10px 40px;
-            border-bottom: 1px solid #555;
+            //border-bottom: 1px solid #555;
 
             &:hover {
               color: white;
@@ -211,6 +214,8 @@ body {
   .header-right-container {
     flex: 1;
     height: 100%;
+    font-size: 1.0rem;
+    transition: font-size .3s;
 
     @include mq-down() {
       display: none;
@@ -222,6 +227,22 @@ body {
     font-size: 1.0rem;
   }
 }
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  height: 40px;
+
+  .site-title {
+    font-size: 1.2rem;
+  }
+
+  .header-right-container {
+    font-size: 0.6rem;
+  }
+}
+
 .page-nav {
   display : flex;
   flex-flow: row wrap;
@@ -366,8 +387,7 @@ body {
     .article-container {
       background-color: rgba(0, 0, 0, 0.8);
       padding: 20px 0 30px 20px;
-      border-radius: 0 12px 12px 0;
-      border-left: 6px solid red;
+      border-radius: 12px;
 
       .tag {
       }
@@ -1146,7 +1166,7 @@ body {
       color: #999;
       text-decoration: none;
       transition: color 0.25s ease;
-      line-height: 3.5;
+      line-height: 1.0;
 
       &:hover {
         color: white;

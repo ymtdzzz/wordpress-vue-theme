@@ -1,6 +1,7 @@
 <template>
     <div class="main-container">
         <app-header/>
+        <global-nav/>
         <breadcrumb v-if="showBreadCrumbs" />
         <div>
             <transition name="slide-fade">
@@ -15,6 +16,7 @@
   import Header from './components/partials/Header'
   import Footer from './components/partials/Footer'
   import Breadcrumb from './components/partials/Breadcrumb'
+  import GlobalNav from "./components/partials/GlobalNav"
   import { mapGetters } from 'vuex'
 
     export default {
@@ -31,7 +33,8 @@
         components: {
             appHeader: Header,
             appFooter: Footer,
-            Breadcrumb
+            Breadcrumb,
+            GlobalNav
         },
         methods: {
             beforeLeave(element) {
@@ -47,6 +50,8 @@
             afterEnter(element) {
                 element.style.height = 'auto'
             }
+        },
+        mounted() {
         }
     }
 </script>
