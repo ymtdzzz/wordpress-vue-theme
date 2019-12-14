@@ -35,7 +35,7 @@ body {
   .nav-drawer {
     flex: 0.1;
     display: none;
-    position: relative;
+    position: absolute;
 
     @include mq-down() {
       display: block;
@@ -104,41 +104,46 @@ body {
       transition: .3s ease-in-out;/*滑らかに表示*/
       -webkit-transform: translateX(-105%);
       transform: translateX(-105%);/*左に隠しておく*/
+      background-color: black;
 
       .nav-header {
         padding: 15px;
         text-align: center;
         font-size: 1.5rem;
-        background-color: gray;
+        background-color: black;
+        color: white;
       }
 
       .nav-title {
-        color: black;
+        color: white;
         padding: 15px;
         text-align: center;
         font-size: 1.3rem;
         margin-top: 80px;
-        background-color: #aaa;
+        background-color: #222;
+      }
+
+      .nav-black {
+        background-color: black;
       }
 
       .nav-content {
-        color: black;
+        color: white;
 
         li {
           text-align: left;
-          background-color: #fff;
 
           a {
-            color: #555;
+            color: white;
             text-decoration: none;
             font-size: 1.2rem;
             transition: color .3s;
             display: block;
             padding: 10px 0 10px 40px;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid #555;
 
             &:hover {
-              color: black;
+              color: white;
             }
           }
         }
@@ -153,12 +158,12 @@ body {
       .nav-profile-name {
         padding: 12px 0;
         font-size: 1.2rem;
-        color: black;
+        color: white;
       }
 
       .nav-profile-description {
         white-space: pre-line;
-        color: black;
+        color: white;
       }
 
       .nav-links {
@@ -175,7 +180,7 @@ body {
           }
 
           a {
-            color: black;
+            color: white;
           }
         }
       }
@@ -531,6 +536,10 @@ body {
   margin: 20px auto;
   padding-bottom: 70px;
 
+  @include mq-down() {
+    width: 90%;
+  }
+
   .comments-header {
     font-size: 2.2rem;
   }
@@ -566,16 +575,16 @@ body {
       display: block;
       padding: 8px;
       border: none;
-      min-width: 400px;
       border-bottom: 1px solid #aaa;
+      width: 100%;
     }
 
     textarea {
+      width: 100%;
       margin: 10px 0;
-      width: 500px;
       border: 1px solid #aaa;
       border-radius: 6px;
-      padding: 15px;
+      padding: 8px;
       display: block;
       min-height: 150px;
     }
@@ -589,6 +598,7 @@ body {
       font-size: 0.9rem;
       transition: background-color .3s;
       cursor: pointer;
+      width: 100%;
 
       &:hover {
         background-color: #444;
@@ -607,6 +617,10 @@ body {
   width: 70%;
   margin: 20px auto;
   padding-bottom: 70px;
+
+  @include mq-down() {
+    width: 90%;
+  }
 
   h1 {
     font-size: 2.2rem;
@@ -1015,6 +1029,173 @@ body {
         &.page-no {
           display: inline-block;
           vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+// 記事ページ
+.post {
+
+}
+.article {
+  width: 70%;
+  margin: 20px auto;
+  padding-bottom: 70px;
+
+  @include mq-down() {
+    width: 90%;
+  }
+}
+.article-header-container {
+  color: white;
+  height: 250px;
+  background-color: black;
+
+  .article-header-image {
+    height: 180px;
+    padding: 45px 15% 30px 15%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color:rgba(0,0,0,0.68);
+    background-blend-mode:darken;
+
+    @include mq-down() {
+      padding: 45px 5% 30px 5%;
+    }
+  }
+
+  .article-title {
+    font-size: 2.2rem;
+  }
+
+  .article-sub {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #888;
+  }
+
+  .article-tags {
+
+    .tag {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 3px 5px;
+      color: #999;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      line-height: 1.0;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+// 固定ページ
+.page {
+
+}
+.article {
+  width: 70%;
+  margin: 20px auto;
+  padding-bottom: 70px;
+
+  @include mq-down() {
+    width: 90%;
+  }
+}
+.article-header-container {
+  color: white;
+  height: 250px;
+  background-color: black;
+
+  .article-header-image {
+    height: 180px;
+    padding: 40px 15% 30px 15%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color:rgba(0,0,0,0.68);
+    background-blend-mode:darken;
+
+    @include mq-down() {
+      padding: 40px 5% 30px 5%;
+    }
+  }
+
+  .article-title {
+    font-size: 2.2rem;
+  }
+
+  .article-sub {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #888;
+  }
+
+  .article-tags {
+
+    .tag {
+      display: inline-block;
+      margin-right: 5px;
+      padding: 3px 5px;
+      color: #999;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      line-height: 3.5;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
+
+// パンくずリスト
+.breadcrumb-container {
+  margin-left: 10%;
+  padding-left: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0 0 12px 12px;
+  width: auto;
+  position: absolute;
+  z-index: 100;
+
+  @include mq-down() {
+    margin-left: 3%;
+  }
+
+  ul {
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      padding: 5px;
+
+      a {
+        text-decoration: none;
+        color: white;
+
+        .bread-link {
+          padding: 3px;
+          border-radius: 5px;
+          text-decoration: none;
+          background-color: transparent;
+          transition: background-color .3s;
+
+          &:hover {
+            background-color: #222;
+          }
+        }
+
+        .bread-space {
+          margin-left: 5px;
         }
       }
     }

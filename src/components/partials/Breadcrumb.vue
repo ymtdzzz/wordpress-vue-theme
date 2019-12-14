@@ -17,51 +17,10 @@
       computed: {
           ...mapGetters({
               breadCrumbs: 'breadCrumbs'
-          })
+          }),
       }
   }
 </script>
 
 <style lang="scss" scoped>
-  .breadcrumb-container {
-    margin-left: 10%;
-    padding-left: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 0 0 12px 12px;
-    width: auto;
-    position: absolute;
-    z-index: 100;
-
-    ul {
-      margin: 0;
-      padding: 10px;
-      list-style: none;
-
-      li {
-        display: inline-block;
-        padding: 5px;
-
-        a {
-          text-decoration: none;
-          color: white;
-
-          .bread-link {
-            padding: 3px;
-            border-radius: 5px;
-            text-decoration: none;
-            background-color: transparent;
-            transition: background-color .3s;
-
-            &:hover {
-              background-color: #222;
-            }
-          }
-
-          .bread-space {
-            margin-left: 5px;
-          }
-        }
-      }
-    }
-  }
 </style>

@@ -26,11 +26,11 @@ const router = new Router({
             name: "Post",
             component: Post,
         },
-		{
-			path: "/category/:category/:page?",
-			name: "Category",
-			component: Category
-		},
+        {
+            path: "/category/:category/:page?",
+            name: "Category",
+            component: Category
+        },
         {
             path: "/tag/:tag/:page?",
             name: "Tag",

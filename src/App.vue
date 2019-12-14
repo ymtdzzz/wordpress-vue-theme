@@ -1,7 +1,7 @@
 <template>
     <div class="main-container">
         <app-header/>
-        <breadcrumb/>
+        <breadcrumb v-if="showBreadCrumbs" />
         <div>
             <transition name="slide-fade">
                 <router-view/>
@@ -15,12 +15,18 @@
   import Header from './components/partials/Header'
   import Footer from './components/partials/Footer'
   import Breadcrumb from './components/partials/Breadcrumb'
+  import { mapGetters } from 'vuex'
 
     export default {
         data() {
             return {
                 prevHeight: 0,
             }
+        },
+        computed: {
+            ...mapGetters({
+                showBreadCrumbs: 'showBreadCrumbs'
+            })
         },
         components: {
             appHeader: Header,
