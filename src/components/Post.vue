@@ -20,19 +20,20 @@
             </transition>
         </div>
         <transition name="slide-fade" mode="out-in">
-            <div v-if="postLoaded">
+            <div v-show="postLoaded">
                 <div class="article">
                     <div class="article-main" v-html="postToShow.content.rendered"></div>
                 </div>
             </div>
-            <Loader v-else/>
         </transition>
+            <Loader v-show="!postLoaded"/>
         <related-posts v-if="postLoaded" :post_id="postToShow.id"/>
         <comment :isOpen="true" :comments="getComments" :postId="postToShow.id" :commentStatus="postToShow.comment_status" />
     </div>
 </template>
 
 <script>
+    import hljs from 'highlight.js'
     import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
@@ -62,6 +63,14 @@
                 return _.get(this.postToShow, '_embedded.replies.0')
             }
         },
+        methods: {
+            enableHighlight: () => {
+                const blocks = document.querySelectorAll('pre code')
+                blocks.forEach(block => {
+                    hljs.highlightBlock(block);
+                })
+            }
+        },
         mounted() {
             if (this.loadedPosts.length) {
                 // 選択した記事が既に読み込み済だった場合はそれを表示する
@@ -79,13 +88,15 @@
             }
             this.$store.dispatch('updateBreadCrumbs', { breadCrumbs: this.breadCrumbs })
         },
+        updated() {
+            this.$nextTick(() => {
+                this.enableHighlight()
+            })
+        },
         components: {
             Loader,
             Comment,
             RelatedPosts
-        }
+        },
     }
 </script>
-
-<style lang="scss" scoped>
-</style>
