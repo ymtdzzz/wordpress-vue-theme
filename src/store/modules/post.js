@@ -2,7 +2,8 @@ import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
 import _ from 'lodash'
 import router from "../../router"
-import moment from "moment"
+import dayjs from "dayjs"
+import 'dayjs/locale/ja'
 
 const PostsRepository = RepositoryFactory.get('posts')
 const TagsRepository = RepositoryFactory.get('tags')
@@ -135,10 +136,11 @@ const actions = {
         //  TODO: 404ページに移動
       } else {
         // 日付からスラグ生成
+        dayjs.locale('ja')
         popular_posts.forEach((post, index) => {
-          const year = moment(post.date).format('YYYY')
-          const month = moment(post.date).format('MM')
-          const day = moment(post.date).format('DD')
+          const year = dayjs(post.date).format('YYYY')
+          const month = dayjs(post.date).format('MM')
+          const day = dayjs(post.date).format('DD')
           post['slug'] = `/${year}/${month}/${day}/${post.slug}`
           post['thumbnail_url'] = _.get(post, '_embedded.wp:featuredmedia.0.source_url', '')
         })

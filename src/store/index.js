@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.runtime.esm'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import * as actions from './actions'

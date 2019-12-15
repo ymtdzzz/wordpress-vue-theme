@@ -1,10 +1,11 @@
 require('./bootstrap')
 
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.runtime.esm'
 import router from './router'
 import App from './App'
 import store from './store'
-import moment from 'moment'
+import dayjs from "dayjs"
+import 'dayjs/locale/ja'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +22,8 @@ const locale = (window.navigator.languages && window.navigator.languages[0]) ||
     window.navigator.language ||
     window.navigator.userLanguage ||
     window.navigator.browserLanguage
-moment.locale(locale)
+
+dayjs.locale('ja')
 
 Vue.component('v-fa', FontAwesomeIcon)
 
@@ -34,7 +36,8 @@ Vue.filter('striphtml', function (value) {
 })
 
 Vue.filter('moment', function (date) {
-    return moment(date).format('LL');
+    return dayjs(date).format('YYYY年MM月DD日');
+
 })
 
 const main = new Vue({

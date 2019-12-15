@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue/dist/vue.runtime.esm'
 import Router from "vue-router";
 
 // Components
