@@ -69,5 +69,10 @@ module.exports = {
         // new webpack.LoaderOptionsPlugin({ minimize: true }),
         new ExtractTextPlugin("styles.css"),
         new BundleAnalyzerPlugin()
-    ]
+    ],
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: "all"
+    //     }
+    // }
 }
