@@ -119,10 +119,10 @@ const actions = {
       } else {
         // 日付からスラグ生成
         related_posts.posts.forEach(post => {
-          const year = moment(post.post_date).format('YYYY')
-          const month = moment(post.post_date).format('MM')
-          const day = moment(post.post_date).format('DD')
-          post['slug'] = `/${year}/${month}/${day}/${post.post_name}`
+          // const year = dayjs(post.date).format('YYYY')
+          // const month = dayjs(post.date).format('MM')
+          // const day = dayjs(post.date).format('DD')
+          post['slug'] = `/post/${post.post_name}`
         })
         commit(types.STORE_FETCHED_RELATED_POSTS, related_posts.posts)
       }
@@ -140,10 +140,10 @@ const actions = {
         // 日付からスラグ生成
         dayjs.locale('ja')
         popular_posts.forEach((post, index) => {
-          const year = dayjs(post.date).format('YYYY')
-          const month = dayjs(post.date).format('MM')
-          const day = dayjs(post.date).format('DD')
-          post['slug'] = `/${year}/${month}/${day}/${post.slug}`
+          // const year = dayjs(post.date).format('YYYY')
+          // const month = dayjs(post.date).format('MM')
+          // const day = dayjs(post.date).format('DD')
+          post['slug'] = `/post/${post.slug}`
           post['thumbnail_url'] = _get(post, '_embedded.wp:featuredmedia.0.source_url', '')
         })
         commit(types.STORE_FETCHED_POPULAR_POSTS, popular_posts)

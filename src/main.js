@@ -8,7 +8,7 @@ import dayjs from "dayjs"
 import 'dayjs/locale/ja'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -16,7 +16,7 @@ import 'reset-css'
 
 require('./assets/scss/global.scss')
 
-library.add(faFolder, faGithub, faTwitter, faFacebook)
+library.add(faFolder, faSearch, faGithub, faTwitter, faFacebook)
 
 const locale = (window.navigator.languages && window.navigator.languages[0]) ||
     window.navigator.language ||
