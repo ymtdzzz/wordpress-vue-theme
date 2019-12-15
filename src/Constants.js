@@ -4,7 +4,8 @@ export default {
 	// in the created() method
 	LOADING_SEGMENTS: 2,
 	// DEV_DOMAIN: "http://vccw.test",
-	DEV_DOMAIN: "http://localhost",
+	// DEV_DOMAIN: "http://localhost",
+	DEV_DOMAIN: "https://vivolog.net",
 	API_BASE_PATH: "/wp-json/wp/v2/",
 	API_MENU_PATH: "/wp-json/menus/v1/",
 	API_RELATED_PATH: "/wp-json/related-posts-by-taxonomy/v1/",

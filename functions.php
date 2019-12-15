@@ -95,7 +95,7 @@ function adding_site_info_rest() {
 		'wp/v2',
 		'/siteinfo',
 		array(
-			'methods' => WP_REST_Server::READABLE,
+			'methods' => 'GET',
 			'callback' => 'fetch_siteinfo'
 		)
 	);
@@ -103,11 +103,12 @@ function adding_site_info_rest() {
 function fetch_siteinfo(){
 	$data = ['name'=>get_bloginfo('name'), 'desc'=>get_bloginfo('description')];
 
-	$response = new WP_REST_Response($data);
-	$response->set_status(200);
-	$domain = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"];
-	$response->header( 'Location', $domain );
-	return $response;
+//	$response = new WP_REST_Response($data);
+//	$response->set_status(200);
+//	$domain = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"];
+//	$response->header( 'Location', $domain );
+//	return $response;
+	return $data;
 }
 add_action('rest_api_init', 'adding_site_info_rest');
 
