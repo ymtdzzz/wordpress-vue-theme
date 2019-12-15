@@ -1,12 +1,12 @@
 // menuと書いていますが正確にはmenuに紐づいたlocationです。
 import { menu_http } from "../Repository"
-import _ from 'lodash'
+import _isEmpty from 'lodash/isEmpty'
 import Constants from "../../Constants";
 
 const resource = Constants.API_MENU_PATH + "locations"
 export default {
 	getMenuBySlug(slug, callback) {
-		if (_.isEmpty(slug)) {
+		if (_isEmpty(slug)) {
 			// 全件取得防止
 			return {}
 		}

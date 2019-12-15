@@ -26,11 +26,13 @@
 </template>
 
 <script>
+    import _get from 'lodash/get'
+
     export default {
         props: ['post'],
         computed: {
             category_name: function () {
-                return _.get(this.post, '_embedded.wp:term.0.0.name', false)
+                return _get(this.post, '_embedded.wp:term.0.0.name', false)
             }
         }
     }

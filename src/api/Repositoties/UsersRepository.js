@@ -1,10 +1,10 @@
 import Repository from "../Repository"
-import _ from 'lodash'
+import _isNaN from 'lodash/isNaN'
 
 const resource = "/users"
 export default {
     getUserById(id, callback) {
-        if (_.isNaN(id)) {
+        if (_isNaN(id)) {
             // 全件取得防止
             return {}
         }

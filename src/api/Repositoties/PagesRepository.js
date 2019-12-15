@@ -1,10 +1,10 @@
 import Repository from "../Repository"
-import _ from 'lodash'
+import _isEmpty from 'lodash/isEmpty'
 
 const resource = "/pages?_embed"
 export default {
 	getPageBySlug(slug, callback) {
-		if (_.isEmpty(slug)) {
+		if (_isEmpty(slug)) {
 			// 全件取得防止
 			return {}
 		}

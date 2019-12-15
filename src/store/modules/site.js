@@ -1,6 +1,6 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
-import _ from 'lodash'
+import _isNil from 'lodash/isNil'
 
 const SiteRepository = RepositoryFactory.get('site')
 
@@ -22,7 +22,7 @@ const actions = {
         commit(types.SITE_INFO_LOADED, false)
 
         SiteRepository.getSiteInfo(siteinfo => {
-            if (_.isNil(siteinfo)) {
+            if (_isNil(siteinfo)) {
                 console.log('nil')
                 //  TODO: 404ページに移動
             } else {

@@ -1,7 +1,9 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
-import _ from 'lodash'
-import router from "../../router"
+import _get from 'lodash/get'
+import _isNil from 'lodash/isNil'
+import _isNull from 'lodash/isNull'
+import _isNumber from 'lodash/isNumber'
 import dayjs from "dayjs"
 import 'dayjs/locale/ja'
 
@@ -16,7 +18,7 @@ const createPostSlug = post => {
 }
 
 const createPostThumbnail = post => {
-    let thumbnail_url = _.get(post, '_embedded.wp:featuredmedia.0.source_url', '')
+    let thumbnail_url = _get(post, '_embedded.wp:featuredmedia.0.source_url', '')
     post.thumbnail_url = thumbnail_url
 	return post
 }
@@ -41,8 +43,8 @@ const getters = {
   recentPosts: state => limit => {
     if (
       !limit ||
-      !_.isNumber(limit) ||
-      _.isNull(limit) ||
+      !_isNumber(limit) ||
+      _isNull(limit) ||
       typeof limit == "undefined"
     ) {
       return state.recent
@@ -87,7 +89,7 @@ const actions = {
     commit(types.POSTS_LOADED, false)
 
     PostsRepository.getPostBySlug(slug, post => {
-      if (_.isNil(post)) {
+      if (_isNil(post)) {
         console.log('nil')
       //  TODO: 404ページに移動
       } else {
@@ -111,7 +113,7 @@ const actions = {
     commit(types.RELATED_POSTS_LOADED, false)
 
     PostsRepository.getRelatedPostsById(id, related_posts => {
-      if (_.isNil(related_posts)) {
+      if (_isNil(related_posts)) {
         console.log('nil')
         //  TODO: 404ページに移動
       } else {
@@ -131,7 +133,7 @@ const actions = {
     commit(types.POPULAR_POSTS_LOADED, false)
 
     PostsRepository.getPopularPosts(popular_posts => {
-      if (_.isNil(popular_posts)) {
+      if (_isNil(popular_posts)) {
         console.log('nil')
         //  TODO: 404ページに移動
       } else {
@@ -142,7 +144,7 @@ const actions = {
           const month = dayjs(post.date).format('MM')
           const day = dayjs(post.date).format('DD')
           post['slug'] = `/${year}/${month}/${day}/${post.slug}`
-          post['thumbnail_url'] = _.get(post, '_embedded.wp:featuredmedia.0.source_url', '')
+          post['thumbnail_url'] = _get(post, '_embedded.wp:featuredmedia.0.source_url', '')
         })
         commit(types.STORE_FETCHED_POPULAR_POSTS, popular_posts)
       }

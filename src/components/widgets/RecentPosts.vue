@@ -14,7 +14,6 @@
 </template>
 
 <script>
-    import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from '../partials/Loader'
     import PostCard from '../partials/PostCard'

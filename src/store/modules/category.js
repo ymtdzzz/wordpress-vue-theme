@@ -1,6 +1,7 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
 import CategoriesRepository from "../../api/Repositoties/CategoriesRepository"
+import _isNil from 'lodash/isNil'
 
 // initial state
 const state = {
@@ -22,7 +23,7 @@ const actions = {
         commit(types.CATEGORY_LOADED, false)
 
         CategoriesRepository.getCategoryBySlug(slug, category => {
-            if (_.isNil(category)) {
+            if (_isNil(category)) {
                 console.log('nil')
                 //  TODO: 404ページに移動
             } else {

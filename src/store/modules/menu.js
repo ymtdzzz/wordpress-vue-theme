@@ -1,6 +1,7 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
 import MenusRepository from "../../api/Repositoties/MenusRepository"
+import _isEmpty from 'lodash/isEmpty'
 
 // initial state
 const state = {
@@ -34,7 +35,7 @@ const actions = {
 			commit(types.PAGE_MENU_LOADED, false)
 
 			MenusRepository.getMenuBySlug(slug, page_menu => {
-				if (_.isEmpty(page_menu)) {
+				if (_isEmpty(page_menu)) {
 					console.log('empty')
 					//  TODO: 404ページに移動
 				} else {
@@ -47,7 +48,7 @@ const actions = {
 			commit(types.MENU_LOADED, false)
 
 			MenusRepository.getMenuBySlug(slug, menu => {
-				if (_.isEmpty(menu)) {
+				if (_isEmpty(menu)) {
 					console.log('empty')
 					//  TODO: 404ページに移動
 				} else {
@@ -60,7 +61,7 @@ const actions = {
 			commit(types.FOOTER_MENU_LOADED, false)
 
 			MenusRepository.getMenuBySlug(slug, footer_menu => {
-				if (_.isEmpty(footer_menu)) {
+				if (_isEmpty(footer_menu)) {
 					console.log('empty')
 					//  TODO: 404ページに移動
 				} else {

@@ -1,12 +1,13 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
-import _ from 'lodash'
+import _get from 'lodash/get'
+import _isNil from 'lodash/isNil'
 import PagesRepository from "../../api/Repositoties/PagesRepository";
 
 const Pages = RepositoryFactory.get('pages')
 
 const createPageThumbnail = page => {
-	let thumbnail_url = _.get(page, '_embedded.wp:featuredmedia.0.source_url', '')
+	let thumbnail_url = _get(page, '_embedded.wp:featuredmedia.0.source_url', '')
 	page.thumbnail_url = thumbnail_url
 	return page
 }
@@ -29,7 +30,7 @@ const actions = {
 		commit(types.PAGE_LOADED, false)
 
 		PagesRepository.getPageBySlug(slug, page => {
-			if (_.isNil(page)) {
+			if (_isNil(page)) {
 				console.log('nil')
 				//  TODO: 404ページに移動
 			} else {

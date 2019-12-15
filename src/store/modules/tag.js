@@ -1,6 +1,7 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
-import TagsRepository from "../../api/Repositoties/TagsRepository";
+import TagsRepository from "../../api/Repositoties/TagsRepository"
+import _isEmpty from 'lodash/isEmpty'
 
 const PostsRepository = RepositoryFactory.get('tags')
 
@@ -40,7 +41,7 @@ const actions = {
         commit(types.TAGS_LOADED, false)
 
             TagsRepository.getTagBySlug(slug, tag => {
-            if (_.isEmpty(tag)) {
+            if (_isEmpty(tag)) {
                 console.log('empty')
                 //  TODO: 404ページに移動
             } else {

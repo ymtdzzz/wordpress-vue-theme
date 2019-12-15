@@ -27,7 +27,6 @@
 </template>
 
 <script>
-    import _ from 'lodash'
     import Constants from "../../Constants"
     import axios from 'axios'
     import Loader from './Loader'

@@ -1,5 +1,6 @@
 import { RepositoryFactory } from "../../api/RepositoryFactory"
 import * as types from "../mutation-types"
+import _isEmpty from 'lodash/isEmpty'
 
 const UsersRepository = RepositoryFactory.get('users')
 
@@ -25,7 +26,7 @@ const actions = {
         commit(types.TAGS_LOADED, false)
 
         UsersRepository.getUserById(id, user => {
-            if (_.isEmpty(user)) {
+            if (_isEmpty(user)) {
                 console.log('empty')
                 //  TODO: 404ページに移動
             } else {

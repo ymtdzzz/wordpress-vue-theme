@@ -16,7 +16,8 @@
 
 <script>
     import { mapGetters } from 'vuex'
-    import Constants from "../../Constants";
+    import Constants from "../../Constants"
+    import _get from 'lodash/get'
 
     export default {
         computed: {
@@ -25,12 +26,12 @@
                 UserLoaded: 'UserLoaded',
             }),
             avatarUrl: function () {
-                return _.get(this.user, 'avatar_urls.96', '')
+                return _get(this.user, 'avatar_urls.96', '')
             }
         },
         methods: {
             isSocial: function (service_name) {
-                return (_.get(this.user, 'user_meta.' + service_name, '') !== '') ? _.get(this.user, 'user_meta.' + service_name) : false
+                return (_get(this.user, 'user_meta.' + service_name, '') !== '') ? _get(this.user, 'user_meta.' + service_name) : false
             }
         },
         mounted() {

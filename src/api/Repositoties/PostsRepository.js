@@ -1,6 +1,7 @@
 import Repository, {popular_http} from "../Repository"
 import { related_http } from "../Repository"
-import _ from 'lodash'
+import _get from 'lodash/get'
+import _isEmpty from 'lodash/isEmpty'
 import Constants from "../../Constants";
 
 const resource = "/posts?_embed"
@@ -12,7 +13,7 @@ export default {
 			`${resource}&per_page=${limit}&page=${page}&categories=${category_id}&tags=${tag_id}&search=${search_keyword}`
 		)
 		.then(response => {
-			response.data.total_pages = _.get(response, 'headers.x-wp-totalpages]', '')
+			response.data.total_pages = _get(response, 'headers.x-wp-totalpages]', '')
 			response.data.current_page = page
 			callback(response.data)
 		})
@@ -21,7 +22,7 @@ export default {
 		})
 	},
 	getPostBySlug(slug, callback) {
-		if (_.isEmpty(slug)) {
+		if (_isEmpty(slug)) {
 			// 全件取得防止
 			return {}
 		}

@@ -34,7 +34,7 @@
 
 <script>
     import hljs from 'highlight.js/lib/highlight'
-    import _ from 'lodash'
+    import _get from 'lodash/get'
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
     import Comment from './partials/Comment'
@@ -55,7 +55,7 @@
                 loadedPosts: "loadedPosts",
             }),
             category_name: function () {
-                return _.get(this.postToShow, '_embedded.wp:term.0.0.name')
+                return _get(this.postToShow, '_embedded.wp:term.0.0.name')
             },
             breadCrumbs: function () {
                 return [{
@@ -67,7 +67,7 @@
                 }]
             },
             getComments: function () {
-                return _.get(this.postToShow, '_embedded.replies.0')
+                return _get(this.postToShow, '_embedded.replies.0')
             }
         },
         methods: {
