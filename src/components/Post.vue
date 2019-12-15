@@ -33,12 +33,19 @@
 </template>
 
 <script>
-    import hljs from 'highlight.js'
+    import hljs from 'highlight.js/lib/highlight'
     import _ from 'lodash'
     import { mapGetters } from 'vuex'
     import Loader from './partials/Loader'
     import Comment from './partials/Comment'
     import RelatedPosts from "./widgets/RelatedPosts"
+
+    import javascript from "highlight.js/lib/languages/javascript"
+    import css from "highlight.js/lib/languages/css"
+    import yaml from "highlight.js/lib/languages/yaml"
+    import python from "highlight.js/lib/languages/python"
+    import php from "highlight.js/lib/languages/php"
+    import shell from "highlight.js/lib/languages/shell"
 
     export default {
         computed: {
@@ -65,6 +72,12 @@
         },
         methods: {
             enableHighlight: () => {
+                hljs.registerLanguage("javascript", javascript)
+                hljs.registerLanguage("css", css)
+                hljs.registerLanguage("yaml", yaml)
+                hljs.registerLanguage("python", python)
+                hljs.registerLanguage("php", php)
+                hljs.registerLanguage("shell", shell)
                 const blocks = document.querySelectorAll('pre code')
                 blocks.forEach(block => {
                     hljs.highlightBlock(block);

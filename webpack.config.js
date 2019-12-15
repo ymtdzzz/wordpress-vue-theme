@@ -2,6 +2,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
     entry: './src/main.js',
@@ -66,6 +67,7 @@ module.exports = {
         //     throttle: "lodash.throttle"
         // }),
         // new webpack.LoaderOptionsPlugin({ minimize: true }),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css"),
+        new BundleAnalyzerPlugin()
     ]
 }

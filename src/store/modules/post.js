@@ -10,7 +10,7 @@ const TagsRepository = RepositoryFactory.get('tags')
 const createPostSlug = post => {
   let slug = post.link.replace("http://" + window.location.hostname, "")
   slug = slug.replace("https://" + window.location.hostname, "")
-  post.slug = slug
+  post.slug = "/post" + slug
   return post
 }
 

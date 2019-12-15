@@ -8,6 +8,20 @@ function remove_redirects() {
 }
 add_action( 'init', 'remove_redirects' );
 
+/**
+ * OGP タグ出力
+ */
+add_action( 'wp_head', 'meta_ogp' );
+function meta_ogp() {
+
+	// title
+	$title = is_single()
+		? strip_tags(get_the_title()) . ' | ' . get_bloginfo('name')
+		: get_bloginfo('name');
+
+	echo '<meta property="og:title" content="' .$title .'">';
+}
+
 // Load scripts
 function load_vue_scripts() {
 	wp_enqueue_script(

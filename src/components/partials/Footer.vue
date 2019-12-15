@@ -11,7 +11,7 @@
       </div>
     </div>
     <footer class="copy-right">
-      © 2019 yMATSUDA All rights reserved.
+      © 2019 vivolog All rights reserved.
     </footer>
   </div>
 </template>

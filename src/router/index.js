@@ -22,7 +22,7 @@ const router = new Router({
         },
         {
             // wordpressのパーマリンク設定に依存する
-            path: "/:year/:month/:day/:postSlug",
+            path: "/post/:postSlug",
             name: "Post",
             component: Post,
         },
