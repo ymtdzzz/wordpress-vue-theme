@@ -20,7 +20,7 @@
           <p class="error" v-if="errors.content.required">コメント内容は必須項目です。</p>
           <button @click="postComment">送信</button>
         </div>
-        <div v-if="!isCommentable" class="post-comment-container">コメントは締め切られました。</div>
+        <div v-if="!isCommentable" class="post-comment-container">コメントは閉鎖されています。</div>
         <loader v-if="isPosting" />
       </transition>
     </div>
