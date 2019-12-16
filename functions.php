@@ -24,10 +24,13 @@ function meta_ogp() {
 
 // Load scripts
 function load_vue_scripts() {
+	wp_deregister_script('jquery-migrate');
+	wp_deregister_script('jquery');
+
 	wp_enqueue_script(
 		'theme-js',
 		get_stylesheet_directory_uri() . '/dist/scripts/main.bundle.js',
-		array( 'jquery' ),
+		false,
 		filemtime( get_stylesheet_directory() . '/dist/scripts/main.bundle.js' ),
 		true
 	);
@@ -40,6 +43,28 @@ function load_vue_scripts() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
+
+//// jquery無効化
+//function deregister_scripts() {
+//	wp_deregister_script('jquery');
+//	wp_dequeue_script('jquery');
+//}
+//
+//add_action('wp_enqueue_scripts', 'deregister_scripts', 99);
+//
+//add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );
+//function dequeue_jquery_migrate( $scripts){
+//	if(!is_admin()){
+//		$scripts->remove( 'jquery');
+//		$scripts->add( 'jquery', false, array( 'jquery-core' ) );
+//	}
+//}
+//
+//add_filter('init',function(){
+//	if (!is_admin()){
+//		wp_deregister_script('jquery');
+//	}
+//});
 
 add_action( 'after_setup_theme', 'register_menu' );
 function register_menu() {
