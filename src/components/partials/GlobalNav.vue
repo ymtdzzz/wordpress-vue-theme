@@ -9,7 +9,7 @@
             <div class="search-container">
                 <div class="search-form">
                     <input class="search-input" type="text" placeholder="Search" v-model="search_keyword">
-                    <button class="search-button" @click="execSearch"><v-fa icon="search"/></button>
+                    <button class="search-button" @click="execSearch" aria-label="search"><v-fa icon="search" aria-hidden="true"/></button>
                 </div>
             </div>
         </div>
