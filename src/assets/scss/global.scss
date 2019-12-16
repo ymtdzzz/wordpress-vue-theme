@@ -257,7 +257,7 @@ body {
   padding: 0;
   li {
     height: 100%;
-    width: 19%;
+    width: 33%;
     list-style: none;
     display: table;
     text-align: center;
@@ -1063,7 +1063,9 @@ body {
 
 // 記事ページ
 .post {
-
+  #toc {
+    
+  }
 }
 .article {
   width: 70%;
