@@ -22,6 +22,13 @@ function meta_ogp() {
 	echo '<meta property="og:title" content="' .$title .'">';
 }
 
+// jquery無効化
+function deregister_scripts() {
+	wp_deregister_script('jquery');
+}
+
+add_action('wp_enqueue_scripts', 'deregister_scripts');
+
 // Load scripts
 function load_vue_scripts() {
 	wp_enqueue_script(
