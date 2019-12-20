@@ -13,7 +13,7 @@ const TagsRepository = RepositoryFactory.get('tags')
 const createPostSlug = post => {
   let slug = post.link.replace("http://" + window.location.hostname, "")
   slug = slug.replace("https://" + window.location.hostname, "")
-  post.slug = "/post" + slug
+  post.slug = slug
   return post
 }
 
@@ -122,7 +122,7 @@ const actions = {
           // const year = dayjs(post.date).format('YYYY')
           // const month = dayjs(post.date).format('MM')
           // const day = dayjs(post.date).format('DD')
-          post['slug'] = `/post/${post.post_name}`
+          post['slug'] = `/${post.post_name}`
         })
         commit(types.STORE_FETCHED_RELATED_POSTS, related_posts.posts)
       }

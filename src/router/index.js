@@ -16,13 +16,13 @@ Vue.use(Router);
 const router = new Router({
     routes: [
         {
-            path: "/:page?",
+            path: "/:page([0-9]+)?",
             name: "Posts",
             component: Home,
         },
         {
             // wordpressのパーマリンク設定に依存する
-            path: "/post/:postSlug",
+            path: "/:postSlug",
             name: "Post",
             component: Post,
         },
